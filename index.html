@@ -1,1 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Espaço 344 · Cardápio 80/90</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      background: #0a0a1a;
+      background-image: radial-gradient(circle at 20% 30%, #1a0e2e 0%, #05050f 90%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+      color: #f0eaff;
+      padding: 18px 16px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ===== CONTAINER PRINCIPAL ===== */
+    .menu-wrapper {
+      max-width: 480px;
+      width: 100%;
+      background: rgba(8, 8, 28, 0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 48px 48px 32px 32px;
+      padding: 22px 18px 30px;
+      box-shadow: 0 0 30px rgba(255, 0, 200, 0.2), 0 0 60px rgba(0, 255, 255, 0.1);
+      border: 1px solid rgba(255, 100, 200, 0.15);
+    }
+
+    /* ===== ELEMENTOS NOSTÁLGICOS (VHS / VINIL) ===== */
+    .vhs-line {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #ff2d95, #ff00c8, #7a2bff, #00d4ff, #ff2d95);
+      background-size: 200% 100%;
+      border-radius: 20px;
+      margin: 12px 0 16px;
+      animation: vhsMove 4s linear infinite;
+    }
+    @keyframes vhsMove {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
+    }
+
+    .memphis-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin: 6px 0 10px;
+    }
+    .memphis-dots span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: #ff44b0;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #ff44b0;
+    }
+    .memphis-dots span:nth-child(2) { background: #00e5ff; box-shadow: 0 0 12px #00e5ff; }
+    .memphis-dots span:nth-child(3) { background: #b26aff; box-shadow: 0 0 12px #b26aff; }
+    .memphis-dots span:nth-child(4) { background: #ffcc00; box-shadow: 0 0 12px #ffcc00; }
+
+    /* ===== CABEÇALHO ===== */
+    .header {
+      text-align: center;
+      padding-bottom: 8px;
+    }
+
+    .logo-neon {
+      font-size: 3.0rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ff2d95;
+      text-shadow: 0 0 8px #ff2d95, 0 0 20px #ff00a0, 0 0 40px #b3007a, 0 0 80px #6600aa;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      line-height: 1.1;
+      transform: skewX(-2deg);
+    }
+    .logo-neon small {
+      font-size: 1.2rem;
+      display: block;
+      color: #00e5ff;
+      text-shadow: 0 0 10px #00e5ff, 0 0 30px #0077ff;
+      letter-spacing: 3px;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-top: -6px;
+    }
+
+    .subtitle-retro {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      background: rgba(0, 255, 255, 0.1);
+      display: inline-block;
+      padding: 4px 18px;
+      border-radius: 40px;
+      border: 1px solid #00e5ff;
+      color: #b0f0ff;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+    }
+
+    /* ===== NAVEGAÇÃO RÁPIDA ===== */
+    .nav-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin: 22px 0 20px;
+      flex-wrap: wrap;
+    }
+    .nav-btn {
+      background: rgba(20, 10, 40, 0.7);
+      backdrop-filter: blur(4px);
+      border: 1.5px solid #ff44b0;
+      color: #ffb0e0;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.0rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(255, 68, 176, 0.3);
+      transition: all 0.15s ease;
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      background: #0d0a1f;
+      flex: 1 1 auto;
+      min-width: 120px;
+      text-align: center;
+    }
+    .nav-btn:active {
+      transform: scale(0.94);
+      background: #ff44b0;
+      color: #0a0a1a;
+      box-shadow: 0 0 35px #ff44b0;
+    }
+    .nav-btn:first-child {
+      border-color: #00e5ff;
+      color: #a0f0ff;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+    .nav-btn:first-child:active {
+      background: #00e5ff;
+      color: #0a0a1a;
+    }
+
+    /* ===== SEÇÕES ===== */
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      padding: 8px 0 0 8px;
+      margin: 28px 0 12px 0;
+      border-left: 6px solid #ff44b0;
+      padding-left: 14px;
+      text-shadow: 0 0 12px #ff44b0;
+      color: #ffb0f0;
+      letter-spacing: 2px;
+      font-family: 'Impact', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .icon {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 6px cyan);
+    }
+    .section-title.drinks {
+      border-left-color: #00e5ff;
+      color: #b0f0ff;
+      text-shadow: 0 0 12px #00e5ff;
+    }
+
+    /* ===== LISTA DE ITENS ===== */
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 6px 0 12px;
+    }
+
+    .menu-item {
+      background: rgba(12, 8, 30, 0.7);
+      backdrop-filter: blur(2px);
+      border-radius: 30px 12px 12px 30px;
+      padding: 12px 18px 12px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.1s ease;
+      border-left: 4px solid #ff44b0;
+    }
+    .menu-item.drink-item {
+      border-left-color: #00e5ff;
+    }
+    .menu-item:active {
+      transform: scale(0.98);
+      background: rgba(40, 20, 60, 0.8);
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .item-name {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      color: #fff0fc;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .item-name .emoji-badge {
+      font-size: 1.0rem;
+      filter: drop-shadow(0 0 4px #ff44b0);
+    }
+    .item-desc {
+      font-size: 0.75rem;
+      color: #b0aac8;
+      margin-top: 2px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.3px;
+      opacity: 0.9;
+      padding-left: 2px;
+    }
+    .item-price {
+      font-weight: 700;
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, #ff44b0, #b26aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(255, 68, 176, 0.3);
+      padding-left: 12px;
+      white-space: nowrap;
+      font-family: 'Courier New', monospace;
+    }
+    .drink-item .item-price {
+      background: linear-gradient(135deg, #00e5ff, #7a2bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* separador de álcool / não álcool */
+    .sub-tag {
+      font-size: 0.7rem;
+      background: #1f1040;
+      padding: 3px 14px;
+      border-radius: 30px;
+      display: inline-block;
+      color: #ccb0ff;
+      border: 1px solid #6a44aa;
+      margin: 6px 0 10px 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ===== RODAPÉ ===== */
+    .footer {
+      margin-top: 38px;
+      padding-top: 24px;
+      text-align: center;
+      border-top: 2px dashed rgba(255, 68, 176, 0.3);
+      color: #b0aad0;
+    }
+    .footer .welcome-msg {
+      font-size: 1.1rem;
+      color: #f0d0ff;
+      font-weight: 500;
+      text-shadow: 0 0 8px #b26aff;
+    }
+    .footer .balcao {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 12px;
+      border-radius: 60px;
+      display: inline-block;
+      margin: 10px 0 12px;
+      border: 1px solid #ff44b0;
+      font-size: 0.9rem;
+      color: #ffb0e0;
+      backdrop-filter: blur(2px);
+    }
+    .footer .instagram {
+      margin-top: 14px;
+      font-size: 1.0rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      background: #1a0e2e;
+      padding: 6px 20px;
+      border-radius: 60px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid #b26aff;
+      color: #d0b0ff;
+    }
+    .footer .instagram span {
+      font-weight: 700;
+      color: #ff44b0;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 420px) {
+      .logo-neon { font-size: 2.4rem; }
+      .logo-neon small { font-size: 1.0rem; }
+      .nav-btn { font-size: 0.8rem; padding: 8px 12px; min-width: 90px; }
+      .menu-item { padding: 10px 12px; }
+      .item-price { font-size: 1.1rem; }
+      .section-title { font-size: 1.6rem; }
+    }
+    @media (min-width: 600px) {
+      body { padding: 30px 20px; }
+      .menu-wrapper { padding: 30px 28px; }
+    }
+
+    /* ===== SCROLL SUAVE ===== */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ===== ÍCONES RETRO ===== */
+    .retro-icon {
+      display: inline-block;
+      filter: drop-shadow(0 0 4px #ff44b0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="menu-wrapper">
+
+  <!-- Cabeçalho neon -->
+  <header class="header">
+    <div class="logo-neon">
+      ESPAÇO 344
+      <small>✦ Festa Anos 80 & 90 ✦</small>
+    </div>
+    <div class="subtitle-retro">📼 cardápio · neon nights</div>
+    <div class="vhs-line"></div>
+    <div class="memphis-dots">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <!-- Navegação Rápida -->
+  <div class="nav-buttons">
+    <a class="nav-btn" href="#bebidas">🍹 Bebidas</a>
+    <a class="nav-btn" href="#salgadinhos">🍟 Salgadinhos</a>
+  </div>
+
+  <!-- ========== SEÇÃO BEBIDAS ========== -->
+  <section id="bebidas">
+    <div class="section-title drinks">
+      <span class="icon">🍸</span> BEBIDAS
+    </div>
+
+    <!-- sub-tag álcool -->
+    <div class="sub-tag">🍷 ALCOÓLICAS</div>
+    <div class="item-list" id="drinksAlcoholic">
+      <!-- Os itens serão inseridos via JS -->
+    </div>
+
+    <!-- sub-tag não álcool -->
+    <div class="sub-tag" style="border-color:#00aaff; color:#a0e0ff;">🥤 NÃO ALCOÓLICAS</div>
+    <div class="item-list" id="drinksNonAlcoholic">
+      <!-- Inserido via JS -->
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO SALGADINHOS ========== -->
+  <section id="salgadinhos">
+    <div class="section-title">
+      <span class="icon">🍟</span> SALGADINHOS
+    </div>
+    <div class="item-list" id="snacksList">
+      <!-- Inserido via JS -->
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="footer">
+    <div class="welcome-msg">✨ Bem-vindo(a) à festa! ✨</div>
+    <div class="balcao">📢 Faça seu pedido diretamente no balcão</div>
+    <div class="instagram">
+      📸 <span>@espaco344</span> · siga a nostalgia
+    </div>
+    <div style="margin-top:12px; font-size:0.7rem; opacity:0.5;">🔮 80/90 vibe · cardápio digital</div>
+  </footer>
+
+</div>
+
+<script>
+  (function() {
+    // ================================================================
+    //  ÁREA DE EDIÇÃO RÁPIDA – altere nomes, descrições e preços aqui
+    // ================================================================
+
+    // ---- BEBIDAS ALCOÓLICAS ----
+    const alcoholicDrinks = [
+      { name: "Caipirinha", desc: "limão, açúcar, cachaça", price: "18,00" },
+      { name: "Vinho Tinto", desc: "taça · suave encorpado", price: "14,00" },
+      { name: "Cerveja Artesanal", desc: "IPA · 500ml", price: "16,00" },
+      { name: "Vodka + energético", desc: "dose dupla + red bull", price: "22,00" }
+    ];
+
+    // ---- BEBIDAS NÃO ALCOÓLICAS ----
+    const nonAlcoholicDrinks = [
+      { name: "Refrigerante", desc: "coca, guaraná, sprite", price: "8,00" },
+      { name: "Suco Natural", desc: "laranja ou maracujá", price: "10,00" },
+      { name: "Água com gás", desc: "limão e hortelã", price: "6,00" },
+      { name: "Milkshake", desc: "morango ou chocolate", price: "14,00" }
+    ];
+
+    // ---- SALGADINHOS / PETISCOS ----
+    const snacks = [
+      { name: "Coxinha", desc: "6 unidades · frango com catupiry", price: "18,00" },
+      { name: "Mini Pizza", desc: "8 unidades · mussarela ou calabresa", price: "20,00" },
+      { name: "Batata Frita", desc: "porção média com cheddar", price: "15,00" },
+      { name: "Empada", desc: "4 unidades · palmito ou carne", price: "16,00" },
+      { name: "Pastel", desc: "3 unidades · carne ou queijo", price: "14,00" }
+    ];
+
+    // ================================================================
+    //  FUNÇÃO PARA RENDERIZAR ITENS
+    // ================================================================
+    function renderItemList(containerId, items, isDrink = true) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      container.innerHTML = ''; // limpa
+
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = `menu-item ${isDrink ? 'drink-item' : ''}`;
+
+        // parte esquerda (nome + desc)
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'item-info';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'item-name';
+        // ícone pequeno para drinks
+        if (isDrink) {
+          const iconSpan = document.createElement('span');
+          iconSpan.className = 'emoji-badge';
+          iconSpan.textContent = '🍹';
+          nameSpan.appendChild(iconSpan);
+        } else {
+          const iconSpan = document.createElement('span');
+          iconSpan.className = 'emoji-badge';
+          iconSpan.textContent = '🍟';
+          nameSpan.appendChild(iconSpan);
+        }
+        const nameText = document.createTextNode(' ' + item.name);
+        nameSpan.appendChild(nameText);
+
+        const descSpan = document.createElement('span');
+        descSpan.className = 'item-desc';
+        descSpan.textContent = item.desc || '';
+
+        infoDiv.appendChild(nameSpan);
+        infoDiv.appendChild(descSpan);
+
+        // preço
+        const priceSpan = document.createElement('span');
+        priceSpan.className = 'item-price';
+        priceSpan.textContent = `R$ ${item.price}`;
+
+        div.appendChild(infoDiv);
+        div.appendChild(priceSpan);
+        container.appendChild(div);
+      });
+    }
+
+    // ================================================================
+    //  RENDERIZAÇÃO
+    // ================================================================
+    renderItemList('drinksAlcoholic', alcoholicDrinks, true);
+    renderItemList('drinksNonAlcoholic', nonAlcoholicDrinks, true);
+    renderItemList('snacksList', snacks, false);
+
+    // ================================================================
+    //  (opcional) ajuste de navegação com scroll suave já no CSS
+    // ================================================================
+  })();
+</script>
+
+<!-- pequena correção para os links de navegação não recarregarem -->
+<!-- (os botões usam <a href="#id">, scroll suave nativo) -->
+
+</body>
+</html>
