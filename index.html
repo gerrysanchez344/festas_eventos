@@ -3,47 +3,22 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>
-    Espaço 344 - Flashback 80s & 90s [v1]
-  </title>
+  <title>Espaço 344 - Flashback 80s & 90s [v2]</title>
 
-  <!-- Fonte limpa e altamente legível -->
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Biblioteca para QR Code -->
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
 
   <style>
 
-    /* =========================================================
-       CONFIGURAÇÃO GERAL
-    ========================================================= */
-
     :root {
-
       --bg: #0d0221;
       --bg-secondary: #121212;
-
       --card: #1e1e2f;
       --card-hover: #292940;
 
@@ -57,12 +32,9 @@
       --dark: #000000;
 
       --border: #3a3a55;
-
-      --danger: #ff3b5c;
+      --danger: #e63956;
       --success: #00c897;
-
     }
-
 
     * {
       box-sizing: border-box;
@@ -70,1613 +42,761 @@
       padding: 0;
     }
 
-
     html {
       scroll-behavior: smooth;
     }
 
-
     body {
-
-      font-family:
-        "Inter",
-        Arial,
-        sans-serif;
-
-      background:
-        var(--bg);
-
-      color:
-        var(--white);
-
-      min-height:
-        100vh;
-
-      overflow-x:
-        hidden;
-
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-
-    /* =========================================================
+    /* =========================
        CABEÇALHO
-    ========================================================= */
+    ========================== */
 
     header {
-
-      position:
-        sticky;
-
-      top:
-        0;
-
-      z-index:
-        100;
-
-      background:
-        #0d0221;
-
-      border-bottom:
-        3px solid var(--pink);
-
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #0d0221;
+      border-bottom: 3px solid var(--pink);
     }
-
 
     .header-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 20px;
 
-      max-width:
-        1100px;
-
-      margin:
-        auto;
-
-      padding:
-        16px 20px;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        space-between;
-
-      gap:
-        20px;
-
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
-
 
     .site-title {
-
-      font-size:
-        clamp(18px, 4vw, 28px);
-
-      font-weight:
-        900;
-
-      line-height:
-        1.2;
-
-      color:
-        var(--white);
-
-      letter-spacing:
-        -0.5px;
-
+      font-size: clamp(18px, 4vw, 28px);
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--white);
     }
-
 
     .site-title span {
-
-      color:
-        var(--yellow);
-
-      font-size:
-        0.75em;
-
+      color: var(--yellow);
+      font-size: 0.75em;
     }
-
 
     .site-subtitle {
-
-      margin-top:
-        5px;
-
-      color:
-        var(--cyan);
-
-      font-size:
-        13px;
-
-      font-weight:
-        800;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        1px;
-
+      margin-top: 5px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-
 
     .header-actions {
-
-      display:
-        flex;
-
-      gap:
-        10px;
-
-      flex-shrink:
-        0;
-
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
     }
-
 
     .header-button {
+      border: 2px solid var(--cyan);
+      background: transparent;
+      color: var(--white);
 
-      border:
-        2px solid var(--cyan);
+      padding: 10px 14px;
+      border-radius: 8px;
 
-      background:
-        transparent;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
 
-      color:
-        var(--white);
-
-      padding:
-        10px 14px;
-
-      border-radius:
-        8px;
-
-      font-family:
-        "Inter",
-        sans-serif;
-
-      font-size:
-        13px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
-
-      transition:
-        0.2s ease;
-
+      cursor: pointer;
+      transition: 0.2s ease;
     }
-
 
     .header-button:hover {
-
-      background:
-        var(--cyan);
-
-      color:
-        var(--dark);
-
+      background: var(--cyan);
+      color: var(--dark);
     }
 
-
-    /* =========================================================
-       ÁREA PRINCIPAL
-    ========================================================= */
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
-
-      max-width:
-        1100px;
-
-      margin:
-        auto;
-
-      padding:
-        35px 20px 25px;
-
-      text-align:
-        center;
-
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 20px 25px;
+      text-align: center;
     }
-
 
     .event-label {
+      display: inline-block;
+      background: var(--pink);
+      color: var(--white);
 
-      display:
-        inline-block;
+      padding: 8px 14px;
+      border-radius: 6px;
 
-      background:
-        var(--pink);
-
-      color:
-        var(--white);
-
-      padding:
-        8px 14px;
-
-      border-radius:
-        6px;
-
-      font-size:
-        12px;
-
-      font-weight:
-        900;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        1px;
-
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-
 
     .hero h1 {
-
-      margin-top:
-        18px;
-
-      font-size:
-        clamp(32px, 8vw, 58px);
-
-      font-weight:
-        900;
-
-      line-height:
-        1;
-
-      color:
-        var(--white);
-
+      margin-top: 18px;
+      font-size: clamp(32px, 8vw, 58px);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
     }
-
 
     .hero h1 .accent {
-
-      color:
-        var(--pink);
-
+      color: var(--pink);
     }
-
 
     .hero p {
+      max-width: 650px;
+      margin: 18px auto 0;
 
-      max-width:
-        650px;
-
-      margin:
-        18px auto 0;
-
-      color:
-        var(--light);
-
-      font-size:
-        16px;
-
-      font-weight:
-        500;
-
-      line-height:
-        1.7;
-
+      color: var(--light);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.7;
     }
 
-
-    /* =========================================================
+    /* =========================
        FILTROS
-    ========================================================= */
+    ========================== */
 
     .filters-wrapper {
-
-      max-width:
-        1100px;
-
-      margin:
-        auto;
-
-      padding:
-        0 20px 30px;
-
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 30px;
     }
-
 
     .filters {
-
-      display:
-        flex;
-
-      gap:
-        10px;
-
-      overflow-x:
-        auto;
-
-      padding-bottom:
-        10px;
-
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
     }
-
 
     .filter-button {
+      flex: 0 0 auto;
 
-      flex:
-        0 0 auto;
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--white);
 
-      border:
-        2px solid var(--border);
+      padding: 13px 18px;
+      border-radius: 8px;
 
-      background:
-        var(--card);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 800;
 
-      color:
-        var(--white);
-
-      padding:
-        13px 18px;
-
-      border-radius:
-        8px;
-
-      font-family:
-        "Inter",
-        sans-serif;
-
-      font-size:
-        15px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
-
-      transition:
-        0.2s ease;
-
+      cursor: pointer;
+      transition: 0.2s ease;
     }
-
 
     .filter-button:hover {
-
-      border-color:
-        var(--cyan);
-
+      border-color: var(--cyan);
     }
-
 
     .filter-button.active {
-
-      background:
-        var(--yellow);
-
-      color:
-        var(--dark);
-
-      border-color:
-        var(--yellow);
-
+      background: var(--yellow);
+      color: var(--dark);
+      border-color: var(--yellow);
     }
 
-
-    /* =========================================================
+    /* =========================
        CARDÁPIO
-    ========================================================= */
+    ========================== */
 
     main {
-
-      max-width:
-        1100px;
-
-      margin:
-        auto;
-
-      padding:
-        0 20px 60px;
-
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 60px;
     }
-
 
     .section-heading {
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      gap:
-        15px;
-
-      margin-bottom:
-        25px;
-
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
     }
-
 
     .section-heading h2 {
-
-      font-size:
-        clamp(24px, 5vw, 34px);
-
-      font-weight:
-        900;
-
-      color:
-        var(--white);
-
-      white-space:
-        nowrap;
-
+      font-size: clamp(24px, 5vw, 34px);
+      font-weight: 900;
+      color: var(--white);
+      white-space: nowrap;
     }
-
 
     .heading-line {
-
-      height:
-        3px;
-
-      flex:
-        1;
-
-      background:
-        var(--cyan);
-
+      height: 3px;
+      flex: 1;
+      background: var(--cyan);
     }
-
 
     .products-grid {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(280px, 1fr)
-        );
-
-      gap:
-        18px;
-
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
     }
-
-
-    /* =========================================================
-       CARD DO PRODUTO
-    ========================================================= */
 
     .product-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 14px;
 
-      background:
-        var(--card);
+      padding: 22px;
 
-      border:
-        2px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-      border-radius:
-        14px;
+      min-height: 210px;
 
-      padding:
-        22px;
-
-      display:
-        flex;
-
-      flex-direction:
-        column;
-
-      justify-content:
-        space-between;
-
-      min-height:
-        210px;
-
-      transition:
-        0.2s ease;
-
+      transition: 0.2s ease;
     }
-
 
     .product-card:hover {
-
-      background:
-        var(--card-hover);
-
-      border-color:
-        var(--cyan);
-
+      background: var(--card-hover);
+      border-color: var(--cyan);
     }
-
 
     .product-header {
-
-      display:
-        flex;
-
-      align-items:
-        flex-start;
-
-      justify-content:
-        space-between;
-
-      gap:
-        12px;
-
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
     }
-
-
-    /* Nome extremamente legível */
 
     .product-name {
-
-      font-size:
-        24px;
-
-      font-weight:
-        900;
-
-      line-height:
-        1.2;
-
-      color:
-        var(--white);
-
-      letter-spacing:
-        -0.4px;
-
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--white);
     }
-
-
-    /* Selo sem brilho ou borrão */
 
     .product-badge {
+      flex: 0 0 auto;
 
-      flex:
-        0 0 auto;
+      background: var(--pink);
+      color: var(--white);
 
-      background:
-        var(--pink);
+      border-radius: 5px;
+      padding: 6px 8px;
 
-      color:
-        var(--white);
-
-      border-radius:
-        5px;
-
-      padding:
-        6px 8px;
-
-      font-size:
-        10px;
-
-      font-weight:
-        900;
-
-      text-transform:
-        uppercase;
-
-      text-align:
-        center;
-
-      line-height:
-        1.2;
-
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.2;
     }
-
-
-    /* Descrição altamente legível */
 
     .product-description {
-
-      margin-top:
-        14px;
-
-      color:
-        var(--light);
-
-      font-size:
-        15px;
-
-      font-weight:
-        500;
-
-      line-height:
-        1.6;
-
+      margin-top: 14px;
+      color: var(--light);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.6;
     }
-
 
     .product-footer {
-
-      margin-top:
-        22px;
-
-      display:
-        flex;
-
-      justify-content:
-        flex-end;
-
-      align-items:
-        center;
-
+      margin-top: 22px;
+      display: flex;
+      justify-content: flex-end;
     }
-
-
-    /* =========================================================
-       PREÇO COM FUNDO SÓLIDO
-    ========================================================= */
 
     .price-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
 
-      display:
-        inline-flex;
+      background: var(--yellow);
+      color: var(--dark);
 
-      flex-direction:
-        column;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      background:
-        var(--yellow);
-
-      color:
-        var(--dark);
-
-      border-radius:
-        8px;
-
-      padding:
-        9px 18px;
-
-      min-width:
-        130px;
-
+      border-radius: 8px;
+      padding: 9px 18px;
+      min-width: 130px;
     }
-
 
     .price-label {
-
-      font-size:
-        10px;
-
-      font-weight:
-        900;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        1px;
-
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-
 
     .product-price {
-
-      font-size:
-        27px;
-
-      font-weight:
-        900;
-
-      line-height:
-        1.1;
-
+      font-size: 27px;
+      font-weight: 900;
+      line-height: 1.1;
     }
-
-
-    /* =========================================================
-       ESTADO VAZIO
-    ========================================================= */
 
     .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
 
-      grid-column:
-        1 / -1;
+      padding: 50px 20px;
 
-      text-align:
-        center;
-
-      padding:
-        50px 20px;
-
-      background:
-        var(--card);
-
-      border:
-        2px dashed var(--cyan);
-
-      border-radius:
-        14px;
-
+      background: var(--card);
+      border: 2px dashed var(--cyan);
+      border-radius: 14px;
     }
-
 
     .empty-state h3 {
-
-      font-size:
-        22px;
-
-      margin-bottom:
-        10px;
-
+      font-size: 22px;
+      margin-bottom: 10px;
     }
-
 
     .empty-state p {
-
-      color:
-        var(--gray);
-
+      color: var(--gray);
     }
 
-
-    /* =========================================================
+    /* =========================
        RODAPÉ
-    ========================================================= */
+    ========================== */
 
     footer {
-
-      background:
-        var(--bg-secondary);
-
-      border-top:
-        3px solid var(--pink);
-
-      padding:
-        35px 20px;
-
-      text-align:
-        center;
-
+      background: var(--bg-secondary);
+      border-top: 3px solid var(--pink);
+      padding: 35px 20px;
+      text-align: center;
     }
-
 
     footer p {
-
-      color:
-        var(--white);
-
-      font-size:
-        16px;
-
-      font-weight:
-        700;
-
-      line-height:
-        1.6;
-
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
     }
-
 
     footer strong {
-
-      color:
-        var(--yellow);
-
+      color: var(--yellow);
     }
-
 
     .footer-small {
-
-      margin-top:
-        8px;
-
-      color:
-        var(--gray);
-
-      font-size:
-        12px;
-
+      margin-top: 8px;
+      color: var(--gray);
+      font-size: 12px;
     }
 
-
-    /* =========================================================
+    /* =========================
        MODAIS
-    ========================================================= */
+    ========================== */
 
     .modal {
+      position: fixed;
+      inset: 0;
 
-      position:
-        fixed;
+      display: none;
+      align-items: center;
+      justify-content: center;
 
-      inset:
-        0;
+      padding: 20px;
 
-      display:
-        none;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      padding:
-        20px;
-
-      background:
-        rgba(0, 0, 0, 0.85);
-
-      z-index:
-        1000;
-
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 1000;
     }
-
 
     .modal.active {
-
-      display:
-        flex;
-
+      display: flex;
     }
-
 
     .modal-content {
+      width: 100%;
+      max-width: 850px;
+      max-height: 90vh;
 
-      width:
-        100%;
+      overflow-y: auto;
 
-      max-width:
-        760px;
+      background: var(--bg-secondary);
+      border: 3px solid var(--cyan);
+      border-radius: 16px;
 
-      max-height:
-        90vh;
-
-      overflow-y:
-        auto;
-
-      background:
-        var(--bg-secondary);
-
-      border:
-        3px solid var(--cyan);
-
-      border-radius:
-        16px;
-
-      padding:
-        25px;
-
+      padding: 25px;
     }
-
 
     .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        space-between;
-
-      gap:
-        20px;
-
-      margin-bottom:
-        25px;
-
+      gap: 20px;
+      margin-bottom: 25px;
     }
-
 
     .modal-header h2 {
-
-      color:
-        var(--white);
-
-      font-size:
-        26px;
-
-      font-weight:
-        900;
-
+      color: var(--white);
+      font-size: 26px;
+      font-weight: 900;
     }
-
 
     .close-button {
+      border: none;
+      background: var(--pink);
+      color: var(--white);
 
-      border:
-        none;
+      width: 40px;
+      height: 40px;
 
-      background:
-        var(--pink);
+      border-radius: 7px;
 
-      color:
-        var(--white);
+      font-size: 25px;
+      font-weight: 900;
 
-      width:
-        38px;
-
-      height:
-        38px;
-
-      border-radius:
-        6px;
-
-      font-size:
-        25px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
+      cursor: pointer;
     }
 
-
-    /* =========================================================
+    /* =========================
        FORMULÁRIOS
-    ========================================================= */
+    ========================== */
 
     .login-area {
-
-      max-width:
-        400px;
-
-      margin:
-        auto;
-
+      max-width: 400px;
+      margin: auto;
     }
-
 
     .admin-panel {
-
-      display:
-        none;
-
+      display: none;
     }
-
 
     .admin-panel.active {
-
-      display:
-        block;
-
+      display: block;
     }
-
-
-    .form-grid {
-
-      display:
-        grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap:
-        15px;
-
-    }
-
-
-    .form-group {
-
-      margin-bottom:
-        16px;
-
-    }
-
-
-    .form-group label {
-
-      display:
-        block;
-
-      margin-bottom:
-        7px;
-
-      color:
-        var(--white);
-
-      font-size:
-        14px;
-
-      font-weight:
-        800;
-
-    }
-
-
-    .form-control {
-
-      width:
-        100%;
-
-      background:
-        #080812;
-
-      color:
-        var(--white);
-
-      border:
-        2px solid var(--border);
-
-      border-radius:
-        7px;
-
-      padding:
-        13px;
-
-      font-family:
-        "Inter",
-        sans-serif;
-
-      font-size:
-        15px;
-
-      font-weight:
-        600;
-
-      outline:
-        none;
-
-    }
-
-
-    .form-control:focus {
-
-      border-color:
-        var(--cyan);
-
-    }
-
-
-    textarea.form-control {
-
-      min-height:
-        90px;
-
-      resize:
-        vertical;
-
-    }
-
-
-    .primary-button {
-
-      width:
-        100%;
-
-      border:
-        none;
-
-      background:
-        var(--pink);
-
-      color:
-        var(--white);
-
-      padding:
-        14px;
-
-      border-radius:
-        7px;
-
-      font-family:
-        "Inter",
-        sans-serif;
-
-      font-size:
-        16px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
-      transition:
-        0.2s;
-
-    }
-
-
-    .primary-button:hover {
-
-      background:
-        #d9006c;
-
-    }
-
-
-    .cancel-button {
-
-      width:
-        100%;
-
-      margin-top:
-        10px;
-
-      border:
-        2px solid var(--gray);
-
-      background:
-        transparent;
-
-      color:
-        var(--white);
-
-      padding:
-        12px;
-
-      border-radius:
-        7px;
-
-      font-weight:
-        800;
-
-      cursor:
-        pointer;
-
-    }
-
 
     .admin-section {
-
-      margin-bottom:
-        30px;
-
-      padding-bottom:
-        25px;
-
-      border-bottom:
-        2px solid var(--border);
-
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 2px solid var(--border);
     }
-
 
     .admin-section h3 {
-
-      margin-bottom:
-        18px;
-
-      color:
-        var(--yellow);
-
-      font-size:
-        22px;
-
-      font-weight:
-        900;
-
+      margin-bottom: 18px;
+      color: var(--yellow);
+      font-size: 22px;
+      font-weight: 900;
     }
 
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
 
-    /* =========================================================
-       LISTA ADMINISTRATIVA
-    ========================================================= */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .form-control {
+      width: 100%;
+
+      background: #080812;
+      color: var(--white);
+
+      border: 2px solid var(--border);
+      border-radius: 7px;
+
+      padding: 13px;
+
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--cyan);
+    }
+
+    textarea.form-control {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .primary-button {
+      width: 100%;
+
+      border: none;
+      background: var(--pink);
+      color: var(--white);
+
+      padding: 14px;
+      border-radius: 7px;
+
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+    .primary-button:hover {
+      background: #d9006c;
+    }
+
+    .secondary-button {
+      width: 100%;
+
+      border: 2px solid var(--gray);
+      background: transparent;
+      color: var(--white);
+
+      padding: 12px;
+      border-radius: 7px;
+
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .secondary-button:hover {
+      border-color: var(--white);
+    }
+
+    /* =========================
+       LISTAS ADMIN
+    ========================== */
 
     .admin-list {
-
-      display:
-        grid;
-
-      gap:
-        10px;
-
+      display: grid;
+      gap: 10px;
     }
 
+    .admin-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-    .admin-product {
+      gap: 15px;
 
-      display:
-        flex;
+      padding: 15px;
 
-      align-items:
-        center;
-
-      justify-content:
-        space-between;
-
-      gap:
-        15px;
-
-      padding:
-        15px;
-
-      background:
-        var(--card);
-
-      border:
-        2px solid var(--border);
-
-      border-radius:
-        8px;
-
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 8px;
     }
 
-
-    .admin-product-info {
-
-      flex:
-        1;
-
-      min-width:
-        0;
-
+    .admin-item-info {
+      flex: 1;
+      min-width: 0;
     }
 
-
-    .admin-product-info strong {
-
-      display:
-        block;
-
-      color:
-        var(--white);
-
-      font-size:
-        16px;
-
-      font-weight:
-        900;
-
+    .admin-item-info strong {
+      display: block;
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 900;
     }
 
+    .admin-item-info span {
+      display: block;
+      margin-top: 4px;
 
-    .admin-product-info span {
-
-      display:
-        block;
-
-      margin-top:
-        4px;
-
-      color:
-        var(--gray);
-
-      font-size:
-        13px;
-
-      font-weight:
-        600;
-
+      color: var(--gray);
+      font-size: 13px;
+      font-weight: 600;
     }
-
-
-    .admin-price {
-
-      color:
-        var(--yellow) !important;
-
-      font-weight:
-        900 !important;
-
-    }
-
 
     .admin-actions {
-
-      display:
-        flex;
-
-      gap:
-        8px;
-
-      flex-shrink:
-        0;
-
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
     }
-
 
     .edit-button {
+      border: none;
+      background: var(--cyan);
+      color: var(--dark);
 
-      border:
-        none;
+      padding: 9px 12px;
+      border-radius: 6px;
 
-      background:
-        var(--cyan);
+      font-family: inherit;
+      font-weight: 900;
 
-      color:
-        var(--dark);
-
-      padding:
-        9px 12px;
-
-      border-radius:
-        6px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
+      cursor: pointer;
     }
-
 
     .delete-button {
+      border: none;
+      background: var(--danger);
+      color: var(--white);
 
-      border:
-        none;
+      padding: 9px 12px;
+      border-radius: 6px;
 
-      background:
-        var(--danger);
+      font-family: inherit;
+      font-weight: 900;
 
-      color:
-        var(--white);
-
-      padding:
-        9px 12px;
-
-      border-radius:
-        6px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
+      cursor: pointer;
     }
 
+    .category-preview {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
 
-    /* =========================================================
+      margin-bottom: 10px;
+
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* =========================
        QR CODE
-    ========================================================= */
+    ========================== */
 
     .qr-area {
-
-      text-align:
-        center;
-
+      text-align: center;
     }
-
 
     #qrcode {
-
-      display:
-        flex;
-
-      justify-content:
-        center;
-
-      margin:
-        20px 0;
-
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
     }
-
 
     #qrcode img,
     #qrcode canvas {
-
-      background:
-        var(--white);
-
-      padding:
-        12px;
-
-      border-radius:
-        8px;
-
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
     }
-
 
     .table-sign {
+      max-width: 500px;
+      margin: 20px auto;
 
-      max-width:
-        500px;
+      padding: 30px 20px;
 
-      margin:
-        20px auto;
+      text-align: center;
 
-      padding:
-        30px 20px;
+      background: white;
+      color: black;
 
-      text-align:
-        center;
-
-      background:
-        #ffffff;
-
-      color:
-        #000000;
-
-      border:
-        10px solid var(--pink);
-
+      border: 10px solid var(--pink);
     }
-
 
     .table-sign h2 {
-
-      color:
-        #000000;
-
-      font-size:
-        28px;
-
-      font-weight:
-        900;
-
-      margin-bottom:
-        10px;
-
+      color: black;
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 10px;
     }
-
 
     .table-sign p {
-
-      color:
-        #000000;
-
-      font-size:
-        19px;
-
-      font-weight:
-        800;
-
-      line-height:
-        1.4;
-
+      color: black;
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.4;
     }
-
 
     .table-sign .qr-message {
-
-      color:
-        var(--pink);
-
-      margin-top:
-        15px;
-
-      font-size:
-        15px;
-
-      font-weight:
-        900;
-
+      color: var(--pink);
+      margin-top: 15px;
+      font-size: 15px;
+      font-weight: 900;
     }
-
 
     .print-button {
+      border: none;
+      background: var(--yellow);
+      color: var(--dark);
 
-      border:
-        none;
+      padding: 13px 20px;
+      border-radius: 7px;
 
-      background:
-        var(--yellow);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 900;
 
-      color:
-        var(--dark);
-
-      padding:
-        13px 20px;
-
-      border-radius:
-        7px;
-
-      font-size:
-        15px;
-
-      font-weight:
-        900;
-
-      cursor:
-        pointer;
-
+      cursor: pointer;
     }
 
-
-    /* =========================================================
+    /* =========================
        RESPONSIVO
-    ========================================================= */
+    ========================== */
 
     @media (max-width: 700px) {
 
       .header-container {
-
-        align-items:
-          flex-start;
-
+        align-items: flex-start;
       }
-
 
       .header-actions {
-
-        flex-direction:
-          column;
-
+        flex-direction: column;
       }
-
 
       .header-button {
-
-        font-size:
-          11px;
-
-        padding:
-          9px 10px;
-
+        font-size: 11px;
+        padding: 9px 10px;
       }
-
 
       .form-grid {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
 
-
-      .admin-product {
-
-        align-items:
-          flex-start;
-
-        flex-direction:
-          column;
-
+      .admin-item {
+        align-items: flex-start;
+        flex-direction: column;
       }
-
 
       .admin-actions {
-
-        width:
-          100%;
-
+        width: 100%;
       }
-
 
       .edit-button,
       .delete-button {
-
-        flex:
-          1;
-
+        flex: 1;
       }
 
     }
 
-
-    /* =========================================================
+    /* =========================
        IMPRESSÃO
-    ========================================================= */
+    ========================== */
 
     @media print {
 
       body * {
-        visibility:
-          hidden;
+        visibility: hidden;
       }
-
 
       #printArea,
       #printArea * {
-
-        visibility:
-          visible;
-
+        visibility: visible;
       }
 
-
       #printArea {
-
-        position:
-          absolute;
-
-        top:
-          0;
-
-        left:
-          0;
-
-        width:
-          100%;
-
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
       }
 
     }
@@ -1684,215 +804,118 @@
   </style>
 </head>
 
-
 <body>
 
-
-  <!-- =========================================================
-       CABEÇALHO
-  ========================================================= -->
+  <!-- CABEÇALHO -->
 
   <header>
-
     <div class="header-container">
 
       <div>
 
         <div class="site-title">
-
           Espaço 344 - Flashback 80s & 90s
-          <span>[v1]</span>
-
+          <span>[v2]</span>
         </div>
 
-
         <div class="site-subtitle">
-
           Cardápio Digital
-
         </div>
 
       </div>
-
 
       <div class="header-actions">
 
         <button
           class="header-button"
           onclick="openQRModal()">
-
           🔳 QR Code
-
         </button>
-
 
         <button
           class="header-button"
           onclick="openAdminModal()">
-
           ⚙ Admin
-
         </button>
 
       </div>
 
     </div>
-
   </header>
 
 
-
-  <!-- =========================================================
-       HERO
-  ========================================================= -->
+  <!-- HERO -->
 
   <section class="hero">
 
     <div class="event-label">
-
       Festa Anos 80 & 90
-
     </div>
 
-
     <h1>
-
       CARDÁPIO DO
-
-      <span class="accent">
-        ESPAÇO 344
-      </span>
-
+      <span class="accent">ESPAÇO 344</span>
     </h1>
 
-
     <p>
-
       Consulte nossos produtos e preços.
       Para comprar, dirija-se diretamente ao balcão/bar.
-
     </p>
 
   </section>
 
 
-
-  <!-- =========================================================
-       FILTROS
-  ========================================================= -->
+  <!-- FILTROS -->
 
   <section class="filters-wrapper">
 
-    <div class="filters">
-
-      <button
-        class="filter-button active"
-        onclick="filterProducts('todos', this)">
-
-        ✨ Todos
-
-      </button>
-
-
-      <button
-        class="filter-button"
-        onclick="filterProducts('Bebidas', this)">
-
-        🍺 Bebidas
-
-      </button>
-
-
-      <button
-        class="filter-button"
-        onclick="filterProducts('Petiscos', this)">
-
-        🍿 Salgadinhos & Petiscos
-
-      </button>
-
-
-      <button
-        class="filter-button"
-        onclick="filterProducts('Drinks', this)">
-
-        🍹 Drinks Espaciais
-
-      </button>
-
-
-      <button
-        class="filter-button"
-        onclick="filterProducts('Sobremesas', this)">
-
-        🍦 Outros / Sobremesas
-
-      </button>
-
+    <div
+      class="filters"
+      id="categoryFilters">
     </div>
 
   </section>
 
 
-
-  <!-- =========================================================
-       CARDÁPIO
-  ========================================================= -->
+  <!-- PRODUTOS -->
 
   <main>
 
     <div class="section-heading">
 
       <h2 id="categoryTitle">
-
         Todos os Produtos
-
       </h2>
 
       <div class="heading-line"></div>
 
     </div>
 
-
     <div
       class="products-grid"
       id="productsGrid">
-
     </div>
 
   </main>
 
 
-
-  <!-- =========================================================
-       RODAPÉ
-  ========================================================= -->
+  <!-- RODAPÉ -->
 
   <footer>
 
     <p>
-
       🍸 Os pedidos são feitos
-      <strong>
-        exclusivamente no balcão/bar.
-      </strong>
-
+      <strong>exclusivamente no balcão/bar.</strong>
     </p>
 
-
     <div class="footer-small">
-
       Espaço 344 • Flashback 80s & 90s
-
     </div>
 
   </footer>
 
 
-
-  <!-- =========================================================
-       MODAL ADMIN
-  ========================================================= -->
+  <!-- MODAL ADMIN -->
 
   <div
     class="modal"
@@ -1903,22 +926,16 @@
       <div class="modal-header">
 
         <h2>
-
           Painel Administrativo
-
         </h2>
-
 
         <button
           class="close-button"
           onclick="closeAdminModal()">
-
           ×
-
         </button>
 
       </div>
-
 
 
       <!-- LOGIN -->
@@ -1930,11 +947,8 @@
         <div class="form-group">
 
           <label>
-
             Senha de acesso
-
           </label>
-
 
           <input
             type="password"
@@ -1944,46 +958,105 @@
 
         </div>
 
-
         <button
           class="primary-button"
           onclick="loginAdmin()">
-
           ENTRAR
-
         </button>
 
       </div>
 
 
-
-      <!-- PAINEL ADMIN -->
+      <!-- PAINEL -->
 
       <div
         class="admin-panel"
         id="adminPanel">
 
 
-
-        <!-- FORMULÁRIO -->
+        <!-- CATEGORIAS -->
 
         <div class="admin-section">
 
-          <h3 id="formTitle">
-
-            Adicionar Produto
-
+          <h3 id="categoryFormTitle">
+            Gerenciar Categorias
           </h3>
-
 
           <input
             type="hidden"
-            id="editingProductId"
-          >
-
+            id="editingCategoryId">
 
           <div class="form-grid">
 
+            <div class="form-group">
+
+              <label>
+                Nome da categoria
+              </label>
+
+              <input
+                type="text"
+                id="categoryName"
+                class="form-control"
+                placeholder="Ex: Pizzas">
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Ícone / Emoji
+              </label>
+
+              <input
+                type="text"
+                id="categoryIcon"
+                class="form-control"
+                placeholder="Ex: 🍕">
+
+            </div>
+
+          </div>
+
+          <button
+            class="primary-button"
+            id="saveCategoryButton"
+            onclick="saveCategory()">
+            ADICIONAR CATEGORIA
+          </button>
+
+          <button
+            class="secondary-button"
+            id="cancelCategoryEditButton"
+            onclick="cancelCategoryEdit()"
+            style="display:none; margin-top:10px;">
+            CANCELAR EDIÇÃO
+          </button>
+
+          <br><br>
+
+          <div
+            class="admin-list"
+            id="adminCategoriesList">
+          </div>
+
+        </div>
+
+
+        <!-- PRODUTOS -->
+
+        <div class="admin-section">
+
+          <h3 id="productFormTitle">
+            Adicionar Produto
+          </h3>
+
+          <input
+            type="hidden"
+            id="editingProductId">
+
+          <div class="form-grid">
 
             <div class="form-group">
 
@@ -2000,7 +1073,6 @@
             </div>
 
 
-
             <div class="form-group">
 
               <label>
@@ -2010,27 +1082,9 @@
               <select
                 id="productCategory"
                 class="form-control">
-
-                <option value="Bebidas">
-                  🍺 Bebidas
-                </option>
-
-                <option value="Petiscos">
-                  🍿 Salgadinhos & Petiscos
-                </option>
-
-                <option value="Drinks">
-                  🍹 Drinks Espaciais
-                </option>
-
-                <option value="Sobremesas">
-                  🍦 Outros / Sobremesas
-                </option>
-
               </select>
 
             </div>
-
 
 
             <div class="form-group">
@@ -2050,11 +1104,10 @@
             </div>
 
 
-
             <div class="form-group">
 
               <label>
-                Selo/Destaque
+                Selo / Destaque
               </label>
 
               <input
@@ -2066,7 +1119,6 @@
             </div>
 
           </div>
-
 
 
           <div class="form-group">
@@ -2083,46 +1135,36 @@
           </div>
 
 
-
           <button
             class="primary-button"
             id="saveProductButton"
             onclick="saveProduct()">
-
             ADICIONAR PRODUTO
-
           </button>
 
 
           <button
-            class="cancel-button"
-            id="cancelEditButton"
-            onclick="cancelEdit()"
-            style="display:none;">
-
+            class="secondary-button"
+            id="cancelProductEditButton"
+            onclick="cancelProductEdit()"
+            style="display:none; margin-top:10px;">
             CANCELAR EDIÇÃO
-
           </button>
 
         </div>
 
 
-
-        <!-- LISTA DE PRODUTOS -->
+        <!-- LISTA PRODUTOS -->
 
         <div class="admin-section">
 
           <h3>
-
             Produtos Cadastrados
-
           </h3>
-
 
           <div
             class="admin-list"
             id="adminProductsList">
-
           </div>
 
         </div>
@@ -2134,10 +1176,7 @@
   </div>
 
 
-
-  <!-- =========================================================
-       MODAL QR CODE
-  ========================================================= -->
+  <!-- MODAL QR -->
 
   <div
     class="modal"
@@ -2148,79 +1187,49 @@
       <div class="modal-header">
 
         <h2>
-
           QR Code do Cardápio
-
         </h2>
-
 
         <button
           class="close-button"
           onclick="closeQRModal()">
-
           ×
-
         </button>
 
       </div>
 
-
-
-      <div
-        id="printArea">
+      <div id="printArea">
 
         <div class="table-sign">
 
           <h2>
-
             ESPAÇO 344
-
           </h2>
 
-
           <p>
-
             ACESSE O CARDÁPIO
-
           </p>
 
-
-          <div
-            id="qrcode">
-
-          </div>
-
+          <div id="qrcode"></div>
 
           <p class="qr-message">
-
             Aponte a câmera do seu celular!
-
           </p>
 
-
           <p>
-
             Flashback 80s & 90s
-
           </p>
 
         </div>
 
       </div>
 
-
-      <div
-        style="
-          text-align:center;
-          margin-top:20px;
-        ">
+      <div style="text-align:center; margin-top:20px;">
 
         <button
           class="print-button"
           onclick="window.print()">
-
           🖨 Imprimir Plaquinha
-
         </button>
 
       </div>
@@ -2230,198 +1239,195 @@
   </div>
 
 
-
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================= -->
-
   <script>
 
-    /* =========================================================
+    /* =========================
        CONFIGURAÇÕES
-    ========================================================= */
+    ========================== */
 
-    const ADMIN_PASSWORD =
-      "127311";
+    const ADMIN_PASSWORD = "127311";
 
+    const PRODUCTS_STORAGE_KEY =
+      "espaco344_products_v2";
 
-    const STORAGE_KEY =
-      "espaco344_cardapio_v1";
-
-
-    let currentCategory =
-      "todos";
+    const CATEGORIES_STORAGE_KEY =
+      "espaco344_categories_v2";
 
 
-    let products =
-      [];
+    let currentCategory = "todos";
+
+    let products = [];
+
+    let categories = [];
 
 
-    /* =========================================================
-       PRODUTOS INICIAIS
-    ========================================================= */
+    /* =========================
+       CATEGORIAS INICIAIS
+    ========================== */
 
-    const defaultProducts = [
+    const defaultCategories = [
 
       {
         id: 1,
-        name: "Cerveja Long Neck",
-        category: "Bebidas",
-        price: 10.00,
-        description:
-          "Cerveja gelada para curtir a festa.",
-        badge:
-          "Clássico 80s"
+        name: "Bebidas",
+        icon: "🍺"
       },
 
       {
         id: 2,
-        name: "Refrigerante Lata",
-        category: "Bebidas",
-        price: 7.00,
-        description:
-          "Diversos sabores disponíveis.",
-        badge:
-          ""
+        name: "Salgadinhos & Petiscos",
+        icon: "🍿"
       },
 
       {
         id: 3,
-        name: "Água Mineral",
-        category: "Bebidas",
-        price: 5.00,
-        description:
-          "Com ou sem gás.",
-        badge:
-          ""
+        name: "Drinks Espaciais",
+        icon: "🍹"
       },
 
       {
         id: 4,
-        name: "Batata Frita",
-        category: "Petiscos",
-        price: 18.00,
-        description:
-          "Porção crocante para compartilhar.",
-        badge:
-          "Mais Vendido"
-      },
-
-      {
-        id: 5,
-        name: "Coxinha",
-        category: "Petiscos",
-        price: 8.00,
-        description:
-          "Salgadinho clássico e saboroso.",
-        badge:
-          "Retrô"
-      },
-
-      {
-        id: 6,
-        name: "Drink Neon",
-        category: "Drinks",
-        price: 18.00,
-        description:
-          "Drink especial preparado para a festa.",
-        badge:
-          "Especial"
-      },
-
-      {
-        id: 7,
-        name: "Caipirinha",
-        category: "Drinks",
-        price: 15.00,
-        description:
-          "Drink clássico com limão e gelo.",
-        badge:
-          "Clássico"
-      },
-
-      {
-        id: 8,
-        name: "Sorvete",
-        category: "Sobremesas",
-        price: 10.00,
-        description:
-          "Uma opção doce para completar a noite.",
-        badge:
-          ""
+        name: "Outros / Sobremesas",
+        icon: "🍦"
       }
 
     ];
 
 
-    /* =========================================================
-       INICIALIZAÇÃO
-    ========================================================= */
+    /* =========================
+       PRODUTOS INICIAIS
+    ========================== */
+
+    const defaultProducts = [
+
+      {
+        id: 101,
+        name: "Cerveja Long Neck",
+        categoryId: 1,
+        price: 10,
+        description: "Cerveja gelada para curtir a festa.",
+        badge: "Clássico 80s"
+      },
+
+      {
+        id: 102,
+        name: "Refrigerante Lata",
+        categoryId: 1,
+        price: 7,
+        description: "Diversos sabores disponíveis.",
+        badge: ""
+      },
+
+      {
+        id: 103,
+        name: "Batata Frita",
+        categoryId: 2,
+        price: 18,
+        description: "Porção crocante para compartilhar.",
+        badge: "Mais Vendido"
+      },
+
+      {
+        id: 104,
+        name: "Drink Neon",
+        categoryId: 3,
+        price: 18,
+        description: "Drink especial preparado para a festa.",
+        badge: "Especial"
+      },
+
+      {
+        id: 105,
+        name: "Sorvete",
+        categoryId: 4,
+        price: 10,
+        description: "Uma opção doce para completar a noite.",
+        badge: ""
+      }
+
+    ];
+
+
+    /* =========================
+       INICIAR
+    ========================== */
 
     function init() {
 
+      const savedCategories =
+        localStorage.getItem(
+          CATEGORIES_STORAGE_KEY
+        );
+
       const savedProducts =
         localStorage.getItem(
-          STORAGE_KEY
+          PRODUCTS_STORAGE_KEY
         );
 
 
-      if (savedProducts) {
+      categories =
+        savedCategories
+          ? JSON.parse(savedCategories)
+          : [...defaultCategories];
 
-        products =
-          JSON.parse(
-            savedProducts
-          );
 
-      } else {
+      products =
+        savedProducts
+          ? JSON.parse(savedProducts)
+          : [...defaultProducts];
 
-        products =
-          [...defaultProducts];
 
-      }
-
+      renderCategoryFilters();
 
       renderProducts();
 
     }
 
 
-    /* =========================================================
-       LOCAL STORAGE
-    ========================================================= */
+    /* =========================
+       STORAGE
+    ========================== */
 
-    function saveProductsToStorage() {
+    function saveCategories() {
 
       localStorage.setItem(
-        STORAGE_KEY,
+        CATEGORIES_STORAGE_KEY,
+        JSON.stringify(categories)
+      );
+
+    }
+
+
+    function saveProducts() {
+
+      localStorage.setItem(
+        PRODUCTS_STORAGE_KEY,
         JSON.stringify(products)
       );
 
     }
 
 
-    /* =========================================================
-       SEGURANÇA DE TEXTO
-    ========================================================= */
+    /* =========================
+       SEGURANÇA
+    ========================== */
 
     function escapeHTML(text) {
 
       const div =
         document.createElement("div");
 
-
       div.textContent =
         text || "";
-
 
       return div.innerHTML;
 
     }
 
 
-    /* =========================================================
-       FORMATAÇÃO DE PREÇO
-    ========================================================= */
+    /* =========================
+       PREÇO
+    ========================== */
 
     function formatPrice(value) {
 
@@ -2436,9 +1442,84 @@
     }
 
 
-    /* =========================================================
-       RENDERIZAR CARDÁPIO
-    ========================================================= */
+    /* =========================
+       FILTROS DE CATEGORIA
+    ========================== */
+
+    function renderCategoryFilters() {
+
+      const container =
+        document.getElementById(
+          "categoryFilters"
+        );
+
+
+      let html = `
+
+        <button
+          class="filter-button ${
+            currentCategory === "todos"
+              ? "active"
+              : ""
+          }"
+          onclick="filterProducts('todos')">
+
+          ✨ Todos
+
+        </button>
+
+      `;
+
+
+      categories.forEach(
+        category => {
+
+          html += `
+
+            <button
+              class="filter-button ${
+                currentCategory === category.id
+                  ? "active"
+                  : ""
+              }"
+              onclick="filterProducts(${category.id})">
+
+              ${escapeHTML(category.icon)}
+              ${escapeHTML(category.name)}
+
+            </button>
+
+          `;
+
+        }
+      );
+
+
+      container.innerHTML =
+        html;
+
+    }
+
+
+    /* =========================
+       FILTRAR
+    ========================== */
+
+    function filterProducts(categoryId) {
+
+      currentCategory =
+        categoryId;
+
+      renderCategoryFilters();
+
+      renderProducts();
+
+    }
+
+
+    /* =========================
+       RENDERIZAR PRODUTOS
+    ========================== */
 
     function renderProducts() {
 
@@ -2448,7 +1529,7 @@
         );
 
 
-      const categoryTitle =
+      const title =
         document.getElementById(
           "categoryTitle"
         );
@@ -2465,35 +1546,36 @@
         filteredProducts =
           products.filter(
             product =>
-              product.category ===
-              currentCategory
+              Number(product.categoryId) ===
+              Number(currentCategory)
           );
 
       }
 
 
-      const titles = {
+      if (
+        currentCategory === "todos"
+      ) {
 
-        todos:
-          "Todos os Produtos",
+        title.textContent =
+          "Todos os Produtos";
 
-        Bebidas:
-          "🍺 Bebidas",
+      } else {
 
-        Petiscos:
-          "🍿 Salgadinhos & Petiscos",
-
-        Drinks:
-          "🍹 Drinks Espaciais",
-
-        Sobremesas:
-          "🍦 Outros / Sobremesas"
-
-      };
+        const category =
+          categories.find(
+            item =>
+              Number(item.id) ===
+              Number(currentCategory)
+          );
 
 
-      categoryTitle.textContent =
-        titles[currentCategory];
+        title.textContent =
+          category
+            ? `${category.icon} ${category.name}`
+            : "Produtos";
+
+      }
 
 
       if (
@@ -2516,7 +1598,6 @@
 
         `;
 
-
         return;
 
       }
@@ -2527,16 +1608,13 @@
           .map(
             product => `
 
-              <article
-                class="product-card">
+              <article class="product-card">
 
                 <div>
 
-                  <div
-                    class="product-header">
+                  <div class="product-header">
 
-                    <h3
-                      class="product-name">
+                    <h3 class="product-name">
 
                       ${escapeHTML(product.name)}
 
@@ -2547,8 +1625,7 @@
                       product.badge
                         ?
                         `
-                          <span
-                            class="product-badge">
+                          <span class="product-badge">
 
                             ${escapeHTML(product.badge)}
 
@@ -2561,34 +1638,24 @@
                   </div>
 
 
-                  <p
-                    class="product-description">
+                  <p class="product-description">
 
-                    ${escapeHTML(
-                      product.description
-                    )}
+                    ${escapeHTML(product.description)}
 
                   </p>
 
                 </div>
 
 
-                <div
-                  class="product-footer">
+                <div class="product-footer">
 
-                  <div
-                    class="price-box">
+                  <div class="price-box">
 
-                    <span
-                      class="price-label">
-
+                    <span class="price-label">
                       Preço
-
                     </span>
 
-
-                    <span
-                      class="product-price">
+                    <span class="product-price">
 
                       ${formatPrice(product.price)}
 
@@ -2607,44 +1674,9 @@
     }
 
 
-    /* =========================================================
-       FILTRAR PRODUTOS
-    ========================================================= */
-
-    function filterProducts(
-      category,
-      button
-    ) {
-
-      currentCategory =
-        category;
-
-
-      document
-        .querySelectorAll(
-          ".filter-button"
-        )
-        .forEach(
-          btn =>
-            btn.classList.remove(
-              "active"
-            )
-        );
-
-
-      button.classList.add(
-        "active"
-      );
-
-
-      renderProducts();
-
-    }
-
-
-    /* =========================================================
-       ADMIN MODAL
-    ========================================================= */
+    /* =========================
+       ADMIN
+    ========================== */
 
     function openAdminModal() {
 
@@ -2672,10 +1704,6 @@
     }
 
 
-    /* =========================================================
-       LOGIN ADMIN
-    ========================================================= */
-
     function loginAdmin() {
 
       const password =
@@ -2687,46 +1715,499 @@
 
 
       if (
-        password ===
-        ADMIN_PASSWORD
+        password !== ADMIN_PASSWORD
       ) {
-
-        document
-          .getElementById(
-            "loginArea"
-          )
-          .style.display =
-            "none";
-
-
-        document
-          .getElementById(
-            "adminPanel"
-          )
-          .classList.add(
-            "active"
-          );
-
-
-        renderAdminProducts();
-
-      } else {
 
         alert(
           "Senha incorreta."
         );
 
+        return;
+
       }
+
+
+      document
+        .getElementById(
+          "loginArea"
+        )
+        .style.display =
+          "none";
+
+
+      document
+        .getElementById(
+          "adminPanel"
+        )
+        .classList.add(
+          "active"
+        );
+
+
+      renderAdmin();
 
     }
 
 
-    /* =========================================================
+    /* =========================
+       RENDER ADMIN
+    ========================== */
+
+    function renderAdmin() {
+
+      renderAdminCategories();
+
+      renderCategorySelect();
+
+      renderAdminProducts();
+
+    }
+
+
+    /* =========================
+       SELECT DE CATEGORIAS
+    ========================== */
+
+    function renderCategorySelect() {
+
+      const select =
+        document.getElementById(
+          "productCategory"
+        );
+
+
+      select.innerHTML = "";
+
+
+      categories.forEach(
+        category => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            category.id;
+
+
+          option.textContent =
+            `${category.icon} ${category.name}`;
+
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       SALVAR CATEGORIA
+    ========================== */
+
+    function saveCategory() {
+
+      const editingId =
+        document
+          .getElementById(
+            "editingCategoryId"
+          )
+          .value;
+
+
+      const name =
+        document
+          .getElementById(
+            "categoryName"
+          )
+          .value
+          .trim();
+
+
+      const icon =
+        document
+          .getElementById(
+            "categoryIcon"
+          )
+          .value
+          .trim();
+
+
+      if (!name) {
+
+        alert(
+          "Digite o nome da categoria."
+        );
+
+        return;
+
+      }
+
+
+      if (editingId) {
+
+        const category =
+          categories.find(
+            item =>
+              Number(item.id) ===
+              Number(editingId)
+          );
+
+
+        if (category) {
+
+          category.name =
+            name;
+
+          category.icon =
+            icon || "📦";
+
+        }
+
+      } else {
+
+        categories.push({
+
+          id:
+            Date.now(),
+
+          name,
+
+          icon:
+            icon || "📦"
+
+        });
+
+      }
+
+
+      saveCategories();
+
+      renderCategoryFilters();
+
+      renderAdmin();
+
+      clearCategoryForm();
+
+    }
+
+
+    /* =========================
+       LISTA ADMIN CATEGORIAS
+    ========================== */
+
+    function renderAdminCategories() {
+
+      const list =
+        document.getElementById(
+          "adminCategoriesList"
+        );
+
+
+      if (
+        categories.length === 0
+      ) {
+
+        list.innerHTML =
+          `
+            <div class="empty-state">
+
+              Nenhuma categoria cadastrada.
+
+            </div>
+          `;
+
+        return;
+
+      }
+
+
+      list.innerHTML =
+        categories
+          .map(
+            category => `
+
+              <div class="admin-item">
+
+                <div class="admin-item-info">
+
+                  <strong>
+
+                    ${escapeHTML(category.icon)}
+                    ${escapeHTML(category.name)}
+
+                  </strong>
+
+                </div>
+
+
+                <div class="admin-actions">
+
+                  <button
+                    class="edit-button"
+                    onclick="editCategory(${category.id})">
+
+                    ✏ Editar
+
+                  </button>
+
+
+                  <button
+                    class="delete-button"
+                    onclick="deleteCategory(${category.id})">
+
+                    🗑 Excluir
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            `
+          )
+          .join("");
+
+    }
+
+
+    /* =========================
+       EDITAR CATEGORIA
+    ========================== */
+
+    function editCategory(id) {
+
+      const category =
+        categories.find(
+          item =>
+            Number(item.id) ===
+            Number(id)
+        );
+
+
+      if (!category) return;
+
+
+      document
+        .getElementById(
+          "editingCategoryId"
+        )
+        .value =
+          category.id;
+
+
+      document
+        .getElementById(
+          "categoryName"
+        )
+        .value =
+          category.name;
+
+
+      document
+        .getElementById(
+          "categoryIcon"
+        )
+        .value =
+          category.icon;
+
+
+      document
+        .getElementById(
+          "categoryFormTitle"
+        )
+        .textContent =
+          "Editar Categoria";
+
+
+      document
+        .getElementById(
+          "saveCategoryButton"
+        )
+        .textContent =
+          "SALVAR ALTERAÇÕES";
+
+
+      document
+        .getElementById(
+          "cancelCategoryEditButton"
+        )
+        .style.display =
+          "block";
+
+
+      document
+        .getElementById(
+          "categoryName"
+        )
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+    }
+
+
+    /* =========================
+       CANCELAR EDIÇÃO CATEGORIA
+    ========================== */
+
+    function cancelCategoryEdit() {
+
+      clearCategoryForm();
+
+    }
+
+
+    function clearCategoryForm() {
+
+      document
+        .getElementById(
+          "editingCategoryId"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "categoryName"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "categoryIcon"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "categoryFormTitle"
+        )
+        .textContent =
+          "Gerenciar Categorias";
+
+
+      document
+        .getElementById(
+          "saveCategoryButton"
+        )
+        .textContent =
+          "ADICIONAR CATEGORIA";
+
+
+      document
+        .getElementById(
+          "cancelCategoryEditButton"
+        )
+        .style.display =
+          "none";
+
+    }
+
+
+    /* =========================
+       EXCLUIR CATEGORIA
+    ========================== */
+
+    function deleteCategory(id) {
+
+      const categoryProducts =
+        products.filter(
+          product =>
+            Number(product.categoryId) ===
+            Number(id)
+        );
+
+
+      if (
+        categoryProducts.length > 0
+      ) {
+
+        alert(
+          "Não é possível excluir esta categoria porque existem produtos vinculados a ela."
+        );
+
+        return;
+
+      }
+
+
+      const category =
+        categories.find(
+          item =>
+            Number(item.id) ===
+            Number(id)
+        );
+
+
+      if (!category) return;
+
+
+      const confirmed =
+        confirm(
+          `Deseja excluir a categoria "${category.name}"?`
+        );
+
+
+      if (!confirmed) return;
+
+
+      categories =
+        categories.filter(
+          category =>
+            Number(category.id) !==
+            Number(id)
+        );
+
+
+      if (
+        Number(currentCategory) ===
+        Number(id)
+      ) {
+
+        currentCategory =
+          "todos";
+
+      }
+
+
+      saveCategories();
+
+      renderCategoryFilters();
+
+      renderProducts();
+
+      renderAdmin();
+
+    }
+
+
+    /* =========================
        SALVAR PRODUTO
-       ADICIONAR OU EDITAR
-    ========================================================= */
+    ========================== */
 
     function saveProduct() {
+
+      if (
+        categories.length === 0
+      ) {
+
+        alert(
+          "Cadastre pelo menos uma categoria antes de adicionar produtos."
+        );
+
+        return;
+
+      }
+
 
       const editingId =
         document
@@ -2745,7 +2226,7 @@
           .trim();
 
 
-      const category =
+      const categoryId =
         document
           .getElementById(
             "productCategory"
@@ -2783,12 +2264,12 @@
 
       if (
         !name ||
-        !category ||
+        !categoryId ||
         isNaN(price)
       ) {
 
         alert(
-          "Preencha corretamente nome, categoria e preço."
+          "Preencha nome, categoria e preço."
         );
 
         return;
@@ -2796,17 +2277,13 @@
       }
 
 
-      /* =====================================================
-         EDITANDO PRODUTO EXISTENTE
-      ===================================================== */
-
       if (editingId) {
 
         const index =
           products.findIndex(
             product =>
-              String(product.id) ===
-              String(editingId)
+              Number(product.id) ===
+              Number(editingId)
           );
 
 
@@ -2819,7 +2296,8 @@
 
             name,
 
-            category,
+            categoryId:
+              Number(categoryId),
 
             price,
 
@@ -2829,21 +2307,9 @@
 
           };
 
-
-          alert(
-            "Produto atualizado com sucesso!"
-          );
-
         }
 
-      }
-
-
-      /* =====================================================
-         ADICIONANDO NOVO PRODUTO
-      ===================================================== */
-
-      else {
+      } else {
 
         products.push({
 
@@ -2852,7 +2318,8 @@
 
           name,
 
-          category,
+          categoryId:
+            Number(categoryId),
 
           price,
 
@@ -2862,15 +2329,10 @@
 
         });
 
-
-        alert(
-          "Produto adicionado com sucesso!"
-        );
-
       }
 
 
-      saveProductsToStorage();
+      saveProducts();
 
       renderProducts();
 
@@ -2881,9 +2343,9 @@
     }
 
 
-    /* =========================================================
-       RENDERIZAR LISTA ADMIN
-    ========================================================= */
+    /* =========================
+       LISTA ADMIN PRODUTOS
+    ========================== */
 
     function renderAdminProducts() {
 
@@ -2900,16 +2362,11 @@
 
         list.innerHTML =
           `
-            <p
-              style="
-                color:#b8b8c5;
-                text-align:center;
-                padding:20px;
-              ">
+            <div class="empty-state">
 
               Nenhum produto cadastrado.
 
-            </p>
+            </div>
           `;
 
         return;
@@ -2920,85 +2377,96 @@
       list.innerHTML =
         products
           .map(
-            product => `
+            product => {
 
-              <div
-                class="admin-product">
-
-                <div
-                  class="admin-product-info">
-
-                  <strong>
-
-                    ${escapeHTML(
-                      product.name
-                    )}
-
-                  </strong>
+              const category =
+                categories.find(
+                  item =>
+                    Number(item.id) ===
+                    Number(product.categoryId)
+                );
 
 
-                  <span>
-
-                    ${escapeHTML(
-                      product.category
-                    )}
-
-                  </span>
+              const categoryText =
+                category
+                  ? `${category.icon} ${category.name}`
+                  : "Sem categoria";
 
 
-                  <span
-                    class="admin-price">
+              return `
 
-                    ${formatPrice(
-                      product.price
-                    )}
+                <div class="admin-item">
 
-                  </span>
+                  <div class="admin-item-info">
+
+                    <strong>
+
+                      ${escapeHTML(product.name)}
+
+                    </strong>
+
+                    <span>
+
+                      ${escapeHTML(categoryText)}
+
+                    </span>
+
+                    <span
+                      style="
+                        color:#ffe600;
+                        font-weight:900;
+                      ">
+
+                      ${formatPrice(product.price)}
+
+                    </span>
+
+                  </div>
+
+
+                  <div class="admin-actions">
+
+                    <button
+                      class="edit-button"
+                      onclick="editProduct(${product.id})">
+
+                      ✏ Editar
+
+                    </button>
+
+
+                    <button
+                      class="delete-button"
+                      onclick="deleteProduct(${product.id})">
+
+                      🗑 Excluir
+
+                    </button>
+
+                  </div>
 
                 </div>
 
+              `;
 
-                <div
-                  class="admin-actions">
-
-                  <button
-                    class="edit-button"
-                    onclick="editProduct(${product.id})">
-
-                    ✏ Editar
-
-                  </button>
-
-
-                  <button
-                    class="delete-button"
-                    onclick="deleteProduct(${product.id})">
-
-                    🗑 Excluir
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            `
+            }
           )
           .join("");
 
     }
 
 
-    /* =========================================================
+    /* =========================
        EDITAR PRODUTO
-    ========================================================= */
+    ========================== */
 
     function editProduct(id) {
 
       const product =
         products.find(
           item =>
-            item.id === id
+            Number(item.id) ===
+            Number(id)
         );
 
 
@@ -3026,7 +2494,7 @@
           "productCategory"
         )
         .value =
-          product.category;
+          product.categoryId;
 
 
       document
@@ -3055,7 +2523,7 @@
 
       document
         .getElementById(
-          "formTitle"
+          "productFormTitle"
         )
         .textContent =
           "Editar Produto";
@@ -3071,7 +2539,7 @@
 
       document
         .getElementById(
-          "cancelEditButton"
+          "cancelProductEditButton"
         )
         .style.display =
           "block";
@@ -3082,29 +2550,23 @@
           "productName"
         )
         .scrollIntoView({
-          behavior:
-            "smooth",
-          block:
-            "center"
+          behavior: "smooth",
+          block: "center"
         });
 
     }
 
 
-    /* =========================================================
-       CANCELAR EDIÇÃO
-    ========================================================= */
+    /* =========================
+       CANCELAR EDIÇÃO PRODUTO
+    ========================== */
 
-    function cancelEdit() {
+    function cancelProductEdit() {
 
       clearProductForm();
 
     }
 
-
-    /* =========================================================
-       LIMPAR FORMULÁRIO
-    ========================================================= */
 
     function clearProductForm() {
 
@@ -3112,53 +2574,40 @@
         .getElementById(
           "editingProductId"
         )
-        .value =
-          "";
+        .value = "";
 
 
       document
         .getElementById(
           "productName"
         )
-        .value =
-          "";
-
-
-      document
-        .getElementById(
-          "productCategory"
-        )
-        .value =
-          "Bebidas";
+        .value = "";
 
 
       document
         .getElementById(
           "productPrice"
         )
-        .value =
-          "";
+        .value = "";
 
 
       document
         .getElementById(
           "productDescription"
         )
-        .value =
-          "";
+        .value = "";
 
 
       document
         .getElementById(
           "productBadge"
         )
-        .value =
-          "";
+        .value = "";
 
 
       document
         .getElementById(
-          "formTitle"
+          "productFormTitle"
         )
         .textContent =
           "Adicionar Produto";
@@ -3174,7 +2623,7 @@
 
       document
         .getElementById(
-          "cancelEditButton"
+          "cancelProductEditButton"
         )
         .style.display =
           "none";
@@ -3182,16 +2631,17 @@
     }
 
 
-    /* =========================================================
+    /* =========================
        EXCLUIR PRODUTO
-    ========================================================= */
+    ========================== */
 
     function deleteProduct(id) {
 
       const product =
         products.find(
           item =>
-            item.id === id
+            Number(item.id) ===
+            Number(id)
         );
 
 
@@ -3210,11 +2660,12 @@
       products =
         products.filter(
           product =>
-            product.id !== id
+            Number(product.id) !==
+            Number(id)
         );
 
 
-      saveProductsToStorage();
+      saveProducts();
 
       renderProducts();
 
@@ -3223,9 +2674,9 @@
     }
 
 
-    /* =========================================================
+    /* =========================
        QR CODE
-    ========================================================= */
+    ========================== */
 
     function openQRModal() {
 
@@ -3258,27 +2709,23 @@
 
     function generateQRCode() {
 
-      const qrContainer =
+      const container =
         document
           .getElementById(
             "qrcode"
           );
 
 
-      qrContainer.innerHTML =
+      container.innerHTML =
         "";
 
 
-      const currentURL =
-        window.location.href;
-
-
       new QRCode(
-        qrContainer,
+        container,
         {
 
           text:
-            currentURL,
+            window.location.href,
 
           width:
             220,
@@ -3301,31 +2748,28 @@
     }
 
 
-    /* =========================================================
-       FECHAR MODAIS CLICANDO FORA
-    ========================================================= */
+    /* =========================
+       FECHAR MODAL FORA
+    ========================== */
 
     window.addEventListener(
       "click",
       function(event) {
 
         const adminModal =
-          document
-            .getElementById(
-              "adminModal"
-            );
+          document.getElementById(
+            "adminModal"
+          );
 
 
         const qrModal =
-          document
-            .getElementById(
-              "qrModal"
-            );
+          document.getElementById(
+            "qrModal"
+          );
 
 
         if (
-          event.target ===
-          adminModal
+          event.target === adminModal
         ) {
 
           closeAdminModal();
@@ -3334,8 +2778,7 @@
 
 
         if (
-          event.target ===
-          qrModal
+          event.target === qrModal
         ) {
 
           closeQRModal();
@@ -3346,9 +2789,9 @@
     );
 
 
-    /* =========================================================
-       INICIAR SITE
-    ========================================================= */
+    /* =========================
+       INICIAR
+    ========================== */
 
     init();
 
