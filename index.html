@@ -2,10 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Espaço 344 - Flashback 80s & 90s [v2]</title>
+  <!-- Ajuda a evitar cache agressivo do HTML -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>Espaço 344 - Flashback 80s & 90s [v3]</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -265,7 +269,6 @@
       justify-content: space-between;
 
       min-height: 210px;
-
       transition: 0.2s ease;
     }
 
@@ -552,10 +555,6 @@
       cursor: pointer;
     }
 
-    .primary-button:hover {
-      background: #d9006c;
-    }
-
     .secondary-button {
       width: 100%;
 
@@ -571,10 +570,6 @@
       font-weight: 800;
 
       cursor: pointer;
-    }
-
-    .secondary-button:hover {
-      border-color: var(--white);
     }
 
     /* =========================
@@ -655,18 +650,6 @@
       cursor: pointer;
     }
 
-    .category-preview {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      margin-bottom: 10px;
-
-      color: var(--cyan);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
     /* =========================
        QR CODE
     ========================== */
@@ -686,6 +669,24 @@
       background: white;
       padding: 12px;
       border-radius: 8px;
+    }
+
+    .qr-url-info {
+      background: #080812;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+
+      padding: 12px;
+      margin: 15px auto;
+
+      max-width: 600px;
+
+      color: var(--gray);
+      font-size: 12px;
+      font-weight: 600;
+
+      word-break: break-all;
+      text-align: center;
     }
 
     .table-sign {
@@ -806,16 +807,15 @@
 
 <body>
 
-  <!-- CABEÇALHO -->
-
   <header>
+
     <div class="header-container">
 
       <div>
 
         <div class="site-title">
           Espaço 344 - Flashback 80s & 90s
-          <span>[v2]</span>
+          <span>[v3]</span>
         </div>
 
         <div class="site-subtitle">
@@ -841,10 +841,9 @@
       </div>
 
     </div>
+
   </header>
 
-
-  <!-- HERO -->
 
   <section class="hero">
 
@@ -865,8 +864,6 @@
   </section>
 
 
-  <!-- FILTROS -->
-
   <section class="filters-wrapper">
 
     <div
@@ -876,8 +873,6 @@
 
   </section>
 
-
-  <!-- PRODUTOS -->
 
   <main>
 
@@ -899,8 +894,6 @@
   </main>
 
 
-  <!-- RODAPÉ -->
-
   <footer>
 
     <p>
@@ -909,13 +902,13 @@
     </p>
 
     <div class="footer-small">
-      Espaço 344 • Flashback 80s & 90s
+      Espaço 344 • Flashback 80s & 90s • v3
     </div>
 
   </footer>
 
 
-  <!-- MODAL ADMIN -->
+  <!-- ADMIN -->
 
   <div
     class="modal"
@@ -937,8 +930,6 @@
 
       </div>
 
-
-      <!-- LOGIN -->
 
       <div
         class="login-area"
@@ -966,8 +957,6 @@
 
       </div>
 
-
-      <!-- PAINEL -->
 
       <div
         class="admin-panel"
@@ -1001,7 +990,6 @@
                 placeholder="Ex: Pizzas">
 
             </div>
-
 
             <div class="form-group">
 
@@ -1072,7 +1060,6 @@
 
             </div>
 
-
             <div class="form-group">
 
               <label>
@@ -1085,7 +1072,6 @@
               </select>
 
             </div>
-
 
             <div class="form-group">
 
@@ -1103,7 +1089,6 @@
 
             </div>
 
-
             <div class="form-group">
 
               <label>
@@ -1120,7 +1105,6 @@
 
           </div>
 
-
           <div class="form-group">
 
             <label>
@@ -1134,14 +1118,12 @@
 
           </div>
 
-
           <button
             class="primary-button"
             id="saveProductButton"
             onclick="saveProduct()">
             ADICIONAR PRODUTO
           </button>
-
 
           <button
             class="secondary-button"
@@ -1153,8 +1135,6 @@
 
         </div>
 
-
-        <!-- LISTA PRODUTOS -->
 
         <div class="admin-section">
 
@@ -1176,7 +1156,7 @@
   </div>
 
 
-  <!-- MODAL QR -->
+  <!-- QR CODE -->
 
   <div
     class="modal"
@@ -1187,7 +1167,7 @@
       <div class="modal-header">
 
         <h2>
-          QR Code do Cardápio
+          QR Code Atualizado
         </h2>
 
         <button
@@ -1224,6 +1204,11 @@
 
       </div>
 
+      <div
+        class="qr-url-info"
+        id="qrUrlInfo">
+      </div>
+
       <div style="text-align:center; margin-top:20px;">
 
         <button
@@ -1241,11 +1226,25 @@
 
   <script>
 
-    /* =========================
-       CONFIGURAÇÕES
-    ========================== */
+    /* =====================================
+       CONFIGURAÇÃO DA VERSÃO
+    ===================================== */
+
+    const SITE_VERSION = "v3";
+
+
+    /* =====================================
+       SENHA ADMIN
+    ===================================== */
 
     const ADMIN_PASSWORD = "127311";
+
+
+    /* =====================================
+       IMPORTANTE:
+       MANTÉM AS MESMAS CHAVES DA V2
+       PARA NÃO PERDER PRODUTOS CADASTRADOS
+    ===================================== */
 
     const PRODUCTS_STORAGE_KEY =
       "espaco344_products_v2";
@@ -1261,9 +1260,9 @@
     let categories = [];
 
 
-    /* =========================
-       CATEGORIAS INICIAIS
-    ========================== */
+    /* =====================================
+       CATEGORIAS PADRÃO
+    ===================================== */
 
     const defaultCategories = [
 
@@ -1294,9 +1293,9 @@
     ];
 
 
-    /* =========================
-       PRODUTOS INICIAIS
-    ========================== */
+    /* =====================================
+       PRODUTOS PADRÃO
+    ===================================== */
 
     const defaultProducts = [
 
@@ -1334,23 +1333,14 @@
         price: 18,
         description: "Drink especial preparado para a festa.",
         badge: "Especial"
-      },
-
-      {
-        id: 105,
-        name: "Sorvete",
-        categoryId: 4,
-        price: 10,
-        description: "Uma opção doce para completar a noite.",
-        badge: ""
       }
 
     ];
 
 
-    /* =========================
-       INICIAR
-    ========================== */
+    /* =====================================
+       INICIALIZAÇÃO
+    ===================================== */
 
     function init() {
 
@@ -1364,6 +1354,11 @@
           PRODUCTS_STORAGE_KEY
         );
 
+
+      /*
+        Se existirem produtos da v2,
+        eles são preservados.
+      */
 
       categories =
         savedCategories
@@ -1384,9 +1379,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        STORAGE
-    ========================== */
+    ===================================== */
 
     function saveCategories() {
 
@@ -1408,9 +1403,9 @@
     }
 
 
-    /* =========================
-       SEGURANÇA
-    ========================== */
+    /* =====================================
+       SEGURANÇA HTML
+    ===================================== */
 
     function escapeHTML(text) {
 
@@ -1425,9 +1420,9 @@
     }
 
 
-    /* =========================
+    /* =====================================
        PREÇO
-    ========================== */
+    ===================================== */
 
     function formatPrice(value) {
 
@@ -1442,9 +1437,9 @@
     }
 
 
-    /* =========================
-       FILTROS DE CATEGORIA
-    ========================== */
+    /* =====================================
+       FILTROS
+    ===================================== */
 
     function renderCategoryFilters() {
 
@@ -1471,44 +1466,36 @@
       `;
 
 
-      categories.forEach(
-        category => {
+      categories.forEach(category => {
 
-          html += `
+        html += `
 
-            <button
-              class="filter-button ${
-                currentCategory === category.id
-                  ? "active"
-                  : ""
-              }"
-              onclick="filterProducts(${category.id})">
+          <button
+            class="filter-button ${
+              currentCategory === category.id
+                ? "active"
+                : ""
+            }"
+            onclick="filterProducts(${category.id})">
 
-              ${escapeHTML(category.icon)}
-              ${escapeHTML(category.name)}
+            ${escapeHTML(category.icon)}
+            ${escapeHTML(category.name)}
 
-            </button>
+          </button>
 
-          `;
+        `;
 
-        }
-      );
+      });
 
 
-      container.innerHTML =
-        html;
+      container.innerHTML = html;
 
     }
 
 
-    /* =========================
-       FILTRAR
-    ========================== */
-
     function filterProducts(categoryId) {
 
-      currentCategory =
-        categoryId;
+      currentCategory = categoryId;
 
       renderCategoryFilters();
 
@@ -1517,9 +1504,9 @@
     }
 
 
-    /* =========================
-       RENDERIZAR PRODUTOS
-    ========================== */
+    /* =====================================
+       PRODUTOS
+    ===================================== */
 
     function renderProducts() {
 
@@ -1605,88 +1592,69 @@
 
       grid.innerHTML =
         filteredProducts
-          .map(
-            product => `
+          .map(product => `
 
-              <article class="product-card">
+            <article class="product-card">
 
-                <div>
+              <div>
 
-                  <div class="product-header">
+                <div class="product-header">
 
-                    <h3 class="product-name">
+                  <h3 class="product-name">
+                    ${escapeHTML(product.name)}
+                  </h3>
 
-                      ${escapeHTML(product.name)}
-
-                    </h3>
-
-
-                    ${
-                      product.badge
-                        ?
-                        `
-                          <span class="product-badge">
-
-                            ${escapeHTML(product.badge)}
-
-                          </span>
-                        `
-                        :
-                        ""
-                    }
-
-                  </div>
-
-
-                  <p class="product-description">
-
-                    ${escapeHTML(product.description)}
-
-                  </p>
+                  ${
+                    product.badge
+                      ? `
+                        <span class="product-badge">
+                          ${escapeHTML(product.badge)}
+                        </span>
+                      `
+                      : ""
+                  }
 
                 </div>
 
+                <p class="product-description">
+                  ${escapeHTML(product.description)}
+                </p>
 
-                <div class="product-footer">
+              </div>
 
-                  <div class="price-box">
+              <div class="product-footer">
 
-                    <span class="price-label">
-                      Preço
-                    </span>
+                <div class="price-box">
 
-                    <span class="product-price">
+                  <span class="price-label">
+                    Preço
+                  </span>
 
-                      ${formatPrice(product.price)}
-
-                    </span>
-
-                  </div>
+                  <span class="product-price">
+                    ${formatPrice(product.price)}
+                  </span>
 
                 </div>
 
-              </article>
+              </div>
 
-            `
-          )
+            </article>
+
+          `)
           .join("");
 
     }
 
 
-    /* =========================
+    /* =====================================
        ADMIN
-    ========================== */
+    ===================================== */
 
     function openAdminModal() {
 
       document
-        .getElementById(
-          "adminModal"
-        )
-        .classList.add(
-          "active"
-        );
+        .getElementById("adminModal")
+        .classList.add("active");
 
     }
 
@@ -1694,12 +1662,8 @@
     function closeAdminModal() {
 
       document
-        .getElementById(
-          "adminModal"
-        )
-        .classList.remove(
-          "active"
-        );
+        .getElementById("adminModal")
+        .classList.remove("active");
 
     }
 
@@ -1708,19 +1672,13 @@
 
       const password =
         document
-          .getElementById(
-            "adminPassword"
-          )
+          .getElementById("adminPassword")
           .value;
 
 
-      if (
-        password !== ADMIN_PASSWORD
-      ) {
+      if (password !== ADMIN_PASSWORD) {
 
-        alert(
-          "Senha incorreta."
-        );
+        alert("Senha incorreta.");
 
         return;
 
@@ -1728,30 +1686,19 @@
 
 
       document
-        .getElementById(
-          "loginArea"
-        )
-        .style.display =
-          "none";
+        .getElementById("loginArea")
+        .style.display = "none";
 
 
       document
-        .getElementById(
-          "adminPanel"
-        )
-        .classList.add(
-          "active"
-        );
+        .getElementById("adminPanel")
+        .classList.add("active");
 
 
       renderAdmin();
 
     }
 
-
-    /* =========================
-       RENDER ADMIN
-    ========================== */
 
     function renderAdmin() {
 
@@ -1764,9 +1711,9 @@
     }
 
 
-    /* =========================
-       SELECT DE CATEGORIAS
-    ========================== */
+    /* =====================================
+       SELECT CATEGORIAS
+    ===================================== */
 
     function renderCategorySelect() {
 
@@ -1779,70 +1726,52 @@
       select.innerHTML = "";
 
 
-      categories.forEach(
-        category => {
+      categories.forEach(category => {
 
-          const option =
-            document.createElement(
-              "option"
-            );
+        const option =
+          document.createElement("option");
 
+        option.value = category.id;
 
-          option.value =
-            category.id;
+        option.textContent =
+          `${category.icon} ${category.name}`;
 
+        select.appendChild(option);
 
-          option.textContent =
-            `${category.icon} ${category.name}`;
-
-
-          select.appendChild(
-            option
-          );
-
-        }
-      );
+      });
 
     }
 
 
-    /* =========================
+    /* =====================================
        SALVAR CATEGORIA
-    ========================== */
+    ===================================== */
 
     function saveCategory() {
 
       const editingId =
         document
-          .getElementById(
-            "editingCategoryId"
-          )
+          .getElementById("editingCategoryId")
           .value;
 
 
       const name =
         document
-          .getElementById(
-            "categoryName"
-          )
+          .getElementById("categoryName")
           .value
           .trim();
 
 
       const icon =
         document
-          .getElementById(
-            "categoryIcon"
-          )
+          .getElementById("categoryIcon")
           .value
           .trim();
 
 
       if (!name) {
 
-        alert(
-          "Digite o nome da categoria."
-        );
+        alert("Digite o nome da categoria.");
 
         return;
 
@@ -1861,8 +1790,7 @@
 
         if (category) {
 
-          category.name =
-            name;
+          category.name = name;
 
           category.icon =
             icon || "📦";
@@ -1873,8 +1801,7 @@
 
         categories.push({
 
-          id:
-            Date.now(),
+          id: Date.now(),
 
           name,
 
@@ -1897,10 +1824,6 @@
     }
 
 
-    /* =========================
-       LISTA ADMIN CATEGORIAS
-    ========================== */
-
     function renderAdminCategories() {
 
       const list =
@@ -1909,76 +1832,48 @@
         );
 
 
-      if (
-        categories.length === 0
-      ) {
-
-        list.innerHTML =
-          `
-            <div class="empty-state">
-
-              Nenhuma categoria cadastrada.
-
-            </div>
-          `;
-
-        return;
-
-      }
-
-
       list.innerHTML =
         categories
-          .map(
-            category => `
+          .map(category => `
 
-              <div class="admin-item">
+            <div class="admin-item">
 
-                <div class="admin-item-info">
+              <div class="admin-item-info">
 
-                  <strong>
-
-                    ${escapeHTML(category.icon)}
-                    ${escapeHTML(category.name)}
-
-                  </strong>
-
-                </div>
-
-
-                <div class="admin-actions">
-
-                  <button
-                    class="edit-button"
-                    onclick="editCategory(${category.id})">
-
-                    ✏ Editar
-
-                  </button>
-
-
-                  <button
-                    class="delete-button"
-                    onclick="deleteCategory(${category.id})">
-
-                    🗑 Excluir
-
-                  </button>
-
-                </div>
+                <strong>
+                  ${escapeHTML(category.icon)}
+                  ${escapeHTML(category.name)}
+                </strong>
 
               </div>
 
-            `
-          )
+              <div class="admin-actions">
+
+                <button
+                  class="edit-button"
+                  onclick="editCategory(${category.id})">
+
+                  ✏ Editar
+
+                </button>
+
+                <button
+                  class="delete-button"
+                  onclick="deleteCategory(${category.id})">
+
+                  🗑 Excluir
+
+                </button>
+
+              </div>
+
+            </div>
+
+          `)
           .join("");
 
     }
 
-
-    /* =========================
-       EDITAR CATEGORIA
-    ========================== */
 
     function editCategory(id) {
 
@@ -1994,68 +1889,42 @@
 
 
       document
-        .getElementById(
-          "editingCategoryId"
-        )
+        .getElementById("editingCategoryId")
         .value =
           category.id;
 
 
       document
-        .getElementById(
-          "categoryName"
-        )
+        .getElementById("categoryName")
         .value =
           category.name;
 
 
       document
-        .getElementById(
-          "categoryIcon"
-        )
+        .getElementById("categoryIcon")
         .value =
           category.icon;
 
 
       document
-        .getElementById(
-          "categoryFormTitle"
-        )
+        .getElementById("categoryFormTitle")
         .textContent =
           "Editar Categoria";
 
 
       document
-        .getElementById(
-          "saveCategoryButton"
-        )
+        .getElementById("saveCategoryButton")
         .textContent =
           "SALVAR ALTERAÇÕES";
 
 
       document
-        .getElementById(
-          "cancelCategoryEditButton"
-        )
+        .getElementById("cancelCategoryEditButton")
         .style.display =
           "block";
 
-
-      document
-        .getElementById(
-          "categoryName"
-        )
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
     }
 
-
-    /* =========================
-       CANCELAR EDIÇÃO CATEGORIA
-    ========================== */
 
     function cancelCategoryEdit() {
 
@@ -2067,55 +1936,39 @@
     function clearCategoryForm() {
 
       document
-        .getElementById(
-          "editingCategoryId"
-        )
+        .getElementById("editingCategoryId")
         .value = "";
 
 
       document
-        .getElementById(
-          "categoryName"
-        )
+        .getElementById("categoryName")
         .value = "";
 
 
       document
-        .getElementById(
-          "categoryIcon"
-        )
+        .getElementById("categoryIcon")
         .value = "";
 
 
       document
-        .getElementById(
-          "categoryFormTitle"
-        )
+        .getElementById("categoryFormTitle")
         .textContent =
           "Gerenciar Categorias";
 
 
       document
-        .getElementById(
-          "saveCategoryButton"
-        )
+        .getElementById("saveCategoryButton")
         .textContent =
           "ADICIONAR CATEGORIA";
 
 
       document
-        .getElementById(
-          "cancelCategoryEditButton"
-        )
+        .getElementById("cancelCategoryEditButton")
         .style.display =
           "none";
 
     }
 
-
-    /* =========================
-       EXCLUIR CATEGORIA
-    ========================== */
 
     function deleteCategory(id) {
 
@@ -2140,24 +1993,15 @@
       }
 
 
-      const category =
-        categories.find(
-          item =>
-            Number(item.id) ===
-            Number(id)
-        );
+      if (
+        !confirm(
+          "Deseja excluir esta categoria?"
+        )
+      ) {
 
+        return;
 
-      if (!category) return;
-
-
-      const confirmed =
-        confirm(
-          `Deseja excluir a categoria "${category.name}"?`
-        );
-
-
-      if (!confirmed) return;
+      }
 
 
       categories =
@@ -2166,17 +2010,6 @@
             Number(category.id) !==
             Number(id)
         );
-
-
-      if (
-        Number(currentCategory) ===
-        Number(id)
-      ) {
-
-        currentCategory =
-          "todos";
-
-      }
 
 
       saveCategories();
@@ -2190,18 +2023,16 @@
     }
 
 
-    /* =========================
+    /* =====================================
        SALVAR PRODUTO
-    ========================== */
+    ===================================== */
 
     function saveProduct() {
 
-      if (
-        categories.length === 0
-      ) {
+      if (categories.length === 0) {
 
         alert(
-          "Cadastre pelo menos uma categoria antes de adicionar produtos."
+          "Cadastre uma categoria primeiro."
         );
 
         return;
@@ -2211,53 +2042,41 @@
 
       const editingId =
         document
-          .getElementById(
-            "editingProductId"
-          )
+          .getElementById("editingProductId")
           .value;
 
 
       const name =
         document
-          .getElementById(
-            "productName"
-          )
+          .getElementById("productName")
           .value
           .trim();
 
 
       const categoryId =
         document
-          .getElementById(
-            "productCategory"
-          )
+          .getElementById("productCategory")
           .value;
 
 
       const price =
         parseFloat(
           document
-            .getElementById(
-              "productPrice"
-            )
+            .getElementById("productPrice")
             .value
         );
 
 
       const description =
         document
-          .getElementById(
-            "productDescription"
-          )
+          .getElementById("productDescription")
           .value
           .trim();
 
 
       const badge =
         document
-          .getElementById(
-            "productBadge"
-          )
+          .getElementById("productBadge")
           .value
           .trim();
 
@@ -2343,122 +2162,87 @@
     }
 
 
-    /* =========================
-       LISTA ADMIN PRODUTOS
-    ========================== */
-
     function renderAdminProducts() {
 
       const list =
-        document
-          .getElementById(
-            "adminProductsList"
-          );
-
-
-      if (
-        products.length === 0
-      ) {
-
-        list.innerHTML =
-          `
-            <div class="empty-state">
-
-              Nenhum produto cadastrado.
-
-            </div>
-          `;
-
-        return;
-
-      }
+        document.getElementById(
+          "adminProductsList"
+        );
 
 
       list.innerHTML =
         products
-          .map(
-            product => {
+          .map(product => {
 
-              const category =
-                categories.find(
-                  item =>
-                    Number(item.id) ===
-                    Number(product.categoryId)
-                );
-
-
-              const categoryText =
-                category
-                  ? `${category.icon} ${category.name}`
-                  : "Sem categoria";
+            const category =
+              categories.find(
+                item =>
+                  Number(item.id) ===
+                  Number(product.categoryId)
+              );
 
 
-              return `
+            return `
 
-                <div class="admin-item">
+              <div class="admin-item">
 
-                  <div class="admin-item-info">
+                <div class="admin-item-info">
 
-                    <strong>
+                  <strong>
+                    ${escapeHTML(product.name)}
+                  </strong>
 
-                      ${escapeHTML(product.name)}
+                  <span>
+                    ${
+                      category
+                        ? escapeHTML(
+                            `${category.icon} ${category.name}`
+                          )
+                        : "Sem categoria"
+                    }
+                  </span>
 
-                    </strong>
+                  <span
+                    style="
+                      color:#ffe600;
+                      font-weight:900;
+                    ">
 
-                    <span>
+                    ${formatPrice(product.price)}
 
-                      ${escapeHTML(categoryText)}
-
-                    </span>
-
-                    <span
-                      style="
-                        color:#ffe600;
-                        font-weight:900;
-                      ">
-
-                      ${formatPrice(product.price)}
-
-                    </span>
-
-                  </div>
-
-
-                  <div class="admin-actions">
-
-                    <button
-                      class="edit-button"
-                      onclick="editProduct(${product.id})">
-
-                      ✏ Editar
-
-                    </button>
-
-
-                    <button
-                      class="delete-button"
-                      onclick="deleteProduct(${product.id})">
-
-                      🗑 Excluir
-
-                    </button>
-
-                  </div>
+                  </span>
 
                 </div>
 
-              `;
+                <div class="admin-actions">
 
-            }
-          )
+                  <button
+                    class="edit-button"
+                    onclick="editProduct(${product.id})">
+
+                    ✏ Editar
+
+                  </button>
+
+                  <button
+                    class="delete-button"
+                    onclick="deleteProduct(${product.id})">
+
+                    🗑 Excluir
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            `;
+
+          })
           .join("");
 
     }
 
-
-    /* =========================
-       EDITAR PRODUTO
-    ========================== */
 
     function editProduct(id) {
 
@@ -2474,92 +2258,60 @@
 
 
       document
-        .getElementById(
-          "editingProductId"
-        )
+        .getElementById("editingProductId")
         .value =
           product.id;
 
 
       document
-        .getElementById(
-          "productName"
-        )
+        .getElementById("productName")
         .value =
           product.name;
 
 
       document
-        .getElementById(
-          "productCategory"
-        )
+        .getElementById("productCategory")
         .value =
           product.categoryId;
 
 
       document
-        .getElementById(
-          "productPrice"
-        )
+        .getElementById("productPrice")
         .value =
           product.price;
 
 
       document
-        .getElementById(
-          "productDescription"
-        )
+        .getElementById("productDescription")
         .value =
           product.description;
 
 
       document
-        .getElementById(
-          "productBadge"
-        )
+        .getElementById("productBadge")
         .value =
           product.badge;
 
 
       document
-        .getElementById(
-          "productFormTitle"
-        )
+        .getElementById("productFormTitle")
         .textContent =
           "Editar Produto";
 
 
       document
-        .getElementById(
-          "saveProductButton"
-        )
+        .getElementById("saveProductButton")
         .textContent =
           "SALVAR ALTERAÇÕES";
 
 
       document
-        .getElementById(
-          "cancelProductEditButton"
-        )
+        .getElementById("cancelProductEditButton")
         .style.display =
           "block";
 
-
-      document
-        .getElementById(
-          "productName"
-        )
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
     }
 
-
-    /* =========================
-       CANCELAR EDIÇÃO PRODUTO
-    ========================== */
 
     function cancelProductEdit() {
 
@@ -2571,69 +2323,49 @@
     function clearProductForm() {
 
       document
-        .getElementById(
-          "editingProductId"
-        )
+        .getElementById("editingProductId")
         .value = "";
 
 
       document
-        .getElementById(
-          "productName"
-        )
+        .getElementById("productName")
         .value = "";
 
 
       document
-        .getElementById(
-          "productPrice"
-        )
+        .getElementById("productPrice")
         .value = "";
 
 
       document
-        .getElementById(
-          "productDescription"
-        )
+        .getElementById("productDescription")
         .value = "";
 
 
       document
-        .getElementById(
-          "productBadge"
-        )
+        .getElementById("productBadge")
         .value = "";
 
 
       document
-        .getElementById(
-          "productFormTitle"
-        )
+        .getElementById("productFormTitle")
         .textContent =
           "Adicionar Produto";
 
 
       document
-        .getElementById(
-          "saveProductButton"
-        )
+        .getElementById("saveProductButton")
         .textContent =
           "ADICIONAR PRODUTO";
 
 
       document
-        .getElementById(
-          "cancelProductEditButton"
-        )
+        .getElementById("cancelProductEditButton")
         .style.display =
           "none";
 
     }
 
-
-    /* =========================
-       EXCLUIR PRODUTO
-    ========================== */
 
     function deleteProduct(id) {
 
@@ -2648,13 +2380,15 @@
       if (!product) return;
 
 
-      const confirmed =
-        confirm(
+      if (
+        !confirm(
           `Deseja excluir "${product.name}"?`
-        );
+        )
+      ) {
 
+        return;
 
-      if (!confirmed) return;
+      }
 
 
       products =
@@ -2674,19 +2408,60 @@
     }
 
 
-    /* =========================
-       QR CODE
-    ========================== */
+    /* =====================================
+       QR CODE ATUALIZADO
+    ===================================== */
+
+    function getCurrentSiteURL() {
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+
+      /*
+        Remove parâmetros antigos
+        para evitar QR Code acumulando
+        versões anteriores.
+      */
+
+      url.searchParams.delete("v");
+      url.searchParams.delete("updated");
+      url.searchParams.delete("t");
+
+
+      /*
+        Adiciona versão atual
+      */
+
+      url.searchParams.set(
+        "v",
+        SITE_VERSION
+      );
+
+
+      /*
+        Timestamp garante uma URL nova
+        quando o QR Code é gerado.
+      */
+
+      url.searchParams.set(
+        "updated",
+        Date.now()
+      );
+
+
+      return url.toString();
+
+    }
+
 
     function openQRModal() {
 
       document
-        .getElementById(
-          "qrModal"
-        )
-        .classList.add(
-          "active"
-        );
+        .getElementById("qrModal")
+        .classList.add("active");
 
 
       generateQRCode();
@@ -2697,12 +2472,8 @@
     function closeQRModal() {
 
       document
-        .getElementById(
-          "qrModal"
-        )
-        .classList.remove(
-          "active"
-        );
+        .getElementById("qrModal")
+        .classList.remove("active");
 
     }
 
@@ -2710,34 +2481,45 @@
     function generateQRCode() {
 
       const container =
-        document
-          .getElementById(
-            "qrcode"
-          );
+        document.getElementById(
+          "qrcode"
+        );
 
 
-      container.innerHTML =
-        "";
+      const currentURL =
+        getCurrentSiteURL();
+
+
+      /*
+        Mostra qual URL está sendo
+        colocada dentro do QR Code.
+      */
+
+      document
+        .getElementById(
+          "qrUrlInfo"
+        )
+        .textContent =
+          "QR Code apontando para: " +
+          currentURL;
+
+
+      container.innerHTML = "";
 
 
       new QRCode(
         container,
         {
 
-          text:
-            window.location.href,
+          text: currentURL,
 
-          width:
-            220,
+          width: 220,
 
-          height:
-            220,
+          height: 220,
 
-          colorDark:
-            "#000000",
+          colorDark: "#000000",
 
-          colorLight:
-            "#ffffff",
+          colorLight: "#ffffff",
 
           correctLevel:
             QRCode.CorrectLevel.H
@@ -2748,9 +2530,9 @@
     }
 
 
-    /* =========================
-       FECHAR MODAL FORA
-    ========================== */
+    /* =====================================
+       FECHAR MODAIS
+    ===================================== */
 
     window.addEventListener(
       "click",
@@ -2789,9 +2571,9 @@
     );
 
 
-    /* =========================
+    /* =====================================
        INICIAR
-    ========================== */
+    ===================================== */
 
     init();
 
