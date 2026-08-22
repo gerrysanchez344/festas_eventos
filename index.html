@@ -1,135 +1,433 @@
-/* =====================================
-   QR CODE V4 - CONTROLE DE CACHE
-===================================== */
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaço 344 - Flashback 80s & 90s [v1]</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter para legibilidade máxima -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <!-- QRCode.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-function getCurrentSiteURL() {
-
-  /*
-    Usa a URL base do site.
-  */
-
-  const url = new URL(window.location.href);
-
-
-  /*
-    Remove parâmetros antigos.
-  */
-
-  url.searchParams.delete("v");
-  url.searchParams.delete("build");
-  url.searchParams.delete("cache");
-  url.searchParams.delete("updated");
-
-
-  /*
-    Identificação da versão.
-  */
-
-  url.searchParams.set(
-    "v",
-    SITE_VERSION
-  );
-
-
-  /*
-    BUILD FIXO DA PUBLICAÇÃO.
-
-    Sempre que você atualizar o arquivo
-    no servidor, altere SITE_BUILD.
-  */
-
-  url.searchParams.set(
-    "build",
-    SITE_BUILD
-  );
-
-
-  /*
-    Timestamp adicional.
-  */
-
-  url.searchParams.set(
-    "cache",
-    Date.now()
-  );
-
-
-  return url.toString();
-
-}
-
-
-function openQRModal() {
-
-  document
-    .getElementById("qrModal")
-    .classList.add("active");
-
-
-  generateQRCode();
-
-}
-
-
-function closeQRModal() {
-
-  document
-    .getElementById("qrModal")
-    .classList.remove("active");
-
-}
-
-
-function generateQRCode() {
-
-  const container =
-    document.getElementById("qrcode");
-
-
-  const currentURL =
-    getCurrentSiteURL();
-
-
-  /*
-    Mostra a URL exata usada.
-  */
-
-  document
-    .getElementById("qrUrlInfo")
-    .textContent =
-      "Versão atual do QR Code: " +
-      SITE_VERSION +
-      " | Build: " +
-      SITE_BUILD;
-
-
-  /*
-    Limpa QR Code anterior.
-  */
-
-  container.innerHTML = "";
-
-
-  /*
-    Gera novo QR Code.
-  */
-
-  new QRCode(
-    container,
-    {
-      text: currentURL,
-
-      width: 220,
-
-      height: 220,
-
-      colorDark: "#000000",
-
-      colorLight: "#ffffff",
-
-      correctLevel:
-        QRCode.CorrectLevel.H
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0d0221;
+      color: #ffffff;
     }
-  );
+    .font-header {
+      font-family: 'Orbitron', sans-serif;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-qr-area, #printable-qr-area * {
+        visibility: visible;
+      }
+      #printable-qr-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        color: black !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
 
-}
+  <!-- CABEÇALHO -->
+  <header class="border-b-2 border-pink-600 bg-slate-950 py-4 px-4 text-center sticky top-0 z-40">
+    <div class="max-w-xl mx-auto">
+      <span class="inline-block px-2 py-0.5 bg-pink-600 text-white font-bold text-[10px] tracking-wider uppercase rounded mb-1">
+        Festa Anos 80 & 90
+      </span>
+      <h1 class="font-header font-black text-2xl text-cyan-400 tracking-wide uppercase">
+        Espaço 344 <span class="text-xs text-yellow-400 font-sans font-semibold">[v1]</span>
+      </h1>
+      <p class="text-xs text-slate-300 font-bold uppercase tracking-widest mt-0.5">
+        ⚡ FLASHBACK MENU ⚡
+      </p>
+    </div>
+  </header>
+
+  <!-- NAVEGAÇÃO -->
+  <nav class="max-w-xl mx-auto w-full px-4 mt-4 flex justify-center gap-2">
+    <button onclick="switchTab('menu')" id="btn-tab-menu" class="flex-1 py-2.5 px-3 rounded text-xs font-bold bg-cyan-400 text-black uppercase tracking-wider">
+      📖 Cardápio
+    </button>
+    <button onclick="switchTab('qr')" id="btn-tab-qr" class="py-2.5 px-3 rounded text-xs font-bold border border-yellow-400 text-yellow-400 uppercase tracking-wider">
+      🔳 Placa QR
+    </button>
+    <button onclick="switchTab('admin')" id="btn-tab-admin" class="py-2.5 px-3 rounded text-xs font-bold border border-pink-500 text-pink-400 uppercase tracking-wider">
+      ⚙️ Admin
+    </button>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="max-w-xl mx-auto w-full px-4 py-6 flex-grow">
+
+    <!-- SEÇÃO: CARDÁPIO -->
+    <section id="view-menu" class="space-y-6">
+      <!-- FILTROS POR CATEGORIA -->
+      <div class="flex overflow-x-auto gap-2 pb-2">
+        <button onclick="filterCategory('todos')" class="cat-btn active bg-pink-600 text-white font-bold px-3 py-1.5 rounded-full text-xs shrink-0">
+          ⚡ Todos
+        </button>
+        <button onclick="filterCategory('Bebidas')" class="cat-btn bg-slate-900 text-slate-200 border border-slate-700 font-bold px-3 py-1.5 rounded-full text-xs shrink-0">
+          🍺 Bebidas
+        </button>
+        <button onclick="filterCategory('Salgadinhos')" class="cat-btn bg-slate-900 text-slate-200 border border-slate-700 font-bold px-3 py-1.5 rounded-full text-xs shrink-0">
+          🍿 Salgadinhos
+        </button>
+        <button onclick="filterCategory('Drinks')" class="cat-btn bg-slate-900 text-slate-200 border border-slate-700 font-bold px-3 py-1.5 rounded-full text-xs shrink-0">
+          🍹 Drinks Espaciais
+        </button>
+        <button onclick="filterCategory('Outros')" class="cat-btn bg-slate-900 text-slate-200 border border-slate-700 font-bold px-3 py-1.5 rounded-full text-xs shrink-0">
+          🍦 Sobremesas/Outros
+        </button>
+      </div>
+
+      <!-- LISTA DE PRODUTOS -->
+      <div id="products-container" class="grid gap-4">
+        <!-- Renderizado dinamicamente -->
+      </div>
+    </section>
+
+    <!-- SEÇÃO: GERADOR DE QR CODE -->
+    <section id="view-qr" class="hidden">
+      <div class="bg-slate-900 border border-yellow-400 rounded-xl p-6 text-center space-y-4">
+        <h2 class="font-header text-xl text-yellow-400 font-bold uppercase">Gerador de QR Code</h2>
+        <p class="text-xs text-slate-300">Gere a imagem do QR Code para colocar nas mesas do evento.</p>
+
+        <div class="space-y-2 text-left">
+          <label class="text-xs font-bold text-slate-300">Link do Cardápio (URL):</label>
+          <input type="text" id="qr-url-input" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-cyan-400 font-mono focus:outline-none" placeholder="https://seu-site.com">
+          <button onclick="generateQRCode()" class="w-full bg-yellow-400 text-black font-bold py-2 rounded text-xs uppercase">
+            Atualizar QR Code
+          </button>
+        </div>
+
+        <!-- PLACA DE MESA IMPRESSA -->
+        <div id="printable-qr-area" class="mt-6 p-6 bg-slate-950 border-2 border-dashed border-yellow-400 rounded-xl text-center space-y-3 max-w-xs mx-auto text-white">
+          <span class="inline-block px-2 py-0.5 bg-pink-600 text-white font-bold text-[9px] uppercase tracking-wider rounded">Espaço 344</span>
+          <h3 class="font-header text-lg font-black text-cyan-400 uppercase">CARDÁPIO DIGITAL</h3>
+          
+          <div id="qrcode-box" class="flex justify-center p-3 bg-white rounded-lg w-fit mx-auto"></div>
+          
+          <p class="font-bold text-sm text-slate-100 uppercase">
+            Aponte a câmera do seu celular!
+          </p>
+          <p class="text-[11px] text-slate-300 font-medium">
+            Festa Anos 80 & 90 • Faça seu pedido diretamente no balcão
+          </p>
+        </div>
+
+        <button onclick="window.print()" class="w-full bg-pink-600 text-white font-bold py-3 rounded text-xs uppercase">
+          🖨️ Imprimir Plaquinha de Mesa
+        </button>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: ADMIN (SENHA 127311) -->
+    <section id="view-admin" class="hidden space-y-6">
+      
+      <!-- LOGIN -->
+      <div id="admin-login-box" class="bg-slate-900 border border-pink-500 rounded-xl p-6 text-center space-y-4">
+        <h2 class="font-header text-lg text-pink-500 font-bold uppercase">Painel Administrativo</h2>
+        <p class="text-xs text-slate-300">Digite a senha de acesso para gerenciar o cardápio:</p>
+        <div class="flex gap-2 max-w-xs mx-auto">
+          <input type="password" id="admin-pin" placeholder="Senha Admin" class="bg-slate-950 border border-slate-700 rounded px-3 py-2 text-center text-cyan-400 w-full focus:outline-none">
+          <button onclick="checkAdminPin()" class="bg-pink-600 text-white font-bold px-4 py-2 rounded text-xs uppercase">Entrar</button>
+        </div>
+      </div>
+
+      <!-- PAINEL -->
+      <div id="admin-panel" class="hidden space-y-6">
+        
+        <!-- FORMULÁRIO (CADASTRO E EDIÇÃO) -->
+        <div class="bg-slate-900 border border-cyan-400 rounded-xl p-5 space-y-4">
+          <h3 id="form-title" class="font-header text-md text-cyan-400 font-bold uppercase border-b border-slate-800 pb-2">➕ Cadastrar Novo Item</h3>
+          
+          <form id="product-form" onsubmit="handleFormSubmit(event)" class="space-y-3">
+            <input type="hidden" id="edit-prod-id" value="">
+            
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1">Nome do Produto</label>
+              <input type="text" id="prod-name" required class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none" placeholder="Ex: Cerveja Gelada K7">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">Categoria</label>
+                <select id="prod-category" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none">
+                  <option value="Bebidas">🍺 Bebidas</option>
+                  <option value="Salgadinhos">🍿 Salgadinhos</option>
+                  <option value="Drinks">🍹 Drinks Espaciais</option>
+                  <option value="Outros">🍦 Outros/Sobremesas</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">Preço (R$)</label>
+                <input type="number" step="0.01" id="prod-price" required class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none" placeholder="12.00">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1">Descrição Curta</label>
+              <input type="text" id="prod-desc" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none" placeholder="Ex: Lata 350ml bem gelada">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1">Selo Especial (Opcional)</label>
+              <input type="text" id="prod-badge" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none" placeholder="Ex: Clássico 80s, Mais Vendido">
+            </div>
+
+            <div class="flex gap-2 pt-2">
+              <button type="submit" id="btn-submit" class="flex-1 bg-cyan-400 text-black font-bold py-2.5 rounded text-xs uppercase">
+                Salvar Produto
+              </button>
+              <button type="button" id="btn-cancel-edit" onclick="resetForm()" class="hidden bg-slate-700 text-white font-bold py-2.5 px-4 rounded text-xs uppercase">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- LISTA DE PRODUTOS PARA EDITAR/EXCLUIR -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
+          <h3 class="font-header text-md text-slate-200 font-bold uppercase border-b border-slate-800 pb-2">📋 Produtos Cadastrados</h3>
+          <div id="admin-products-list" class="space-y-2">
+            <!-- Renderizado dinamicamente -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-6 px-4 text-center">
+    <p class="font-header text-xs text-pink-500 font-bold tracking-wider uppercase">Espaço 344 [v1]</p>
+    <p class="text-xs text-slate-300 font-semibold mt-1">Os pedidos e pagamentos são feitos diretamente no balcão/bar.</p>
+    <p class="text-[10px] text-slate-500 mt-2">Festa Anos 80 & 90 • Curta a noite! 🕺💃</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const initialProducts = [
+      { id: 1, name: "Cerveja Gelada K7", category: "Bebidas", price: 12.00, desc: "Lata 350ml trincando de gelada.", badge: "Clássico 80s" },
+      { id: 2, name: "Tubaína Guaraná Retro", category: "Bebidas", price: 8.00, desc: "O sabor clássico da infância nos anos 80/90.", badge: "" },
+      { id: 3, name: "Salgadinho Pingo d'Ouro", category: "Salgadinhos", price: 10.00, desc: "Porção individual crocante.", badge: "Mais Vendido" },
+      { id: 4, name: "Mix Coxinha & Risólis", category: "Salgadinhos", price: 20.00, desc: "Porção de 10 mini salgados fritos na hora.", badge: "Quentinho" },
+      { id: 5, name: "Drink Sex on the Beach 80s", category: "Drinks", price: 25.00, desc: "Vodka, xarope de pêssego, suco de laranja e cranberry.", badge: "Especial 90s" },
+      { id: 6, name: "Cocktail Neon Cyan Synth", category: "Drinks", price: 28.00, desc: "Gin, Curaçau Blue, tônica e limão.", badge: "Neon" }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('espaco344_products')) || initialProducts;
+    let currentCategory = 'todos';
+
+    document.addEventListener("DOMContentLoaded", () => {
+      saveProducts();
+      renderCustomerProducts();
+      document.getElementById('qr-url-input').value = window.location.href;
+      generateQRCode();
+    });
+
+    function saveProducts() {
+      localStorage.setItem('espaco344_products', JSON.stringify(products));
+    }
+
+    function switchTab(tab) {
+      document.getElementById('view-menu').classList.add('hidden');
+      document.getElementById('view-qr').classList.add('hidden');
+      document.getElementById('view-admin').classList.add('hidden');
+
+      document.getElementById('btn-tab-menu').className = "py-2.5 px-3 rounded text-xs font-bold border border-cyan-400 text-cyan-400 uppercase tracking-wider";
+      document.getElementById('btn-tab-qr').className = "py-2.5 px-3 rounded text-xs font-bold border border-yellow-400 text-yellow-400 uppercase tracking-wider";
+      document.getElementById('btn-tab-admin').className = "py-2.5 px-3 rounded text-xs font-bold border border-pink-500 text-pink-400 uppercase tracking-wider";
+
+      if (tab === 'menu') {
+        document.getElementById('view-menu').classList.remove('hidden');
+        document.getElementById('btn-tab-menu').className = "flex-1 py-2.5 px-3 rounded text-xs font-bold bg-cyan-400 text-black uppercase tracking-wider";
+        renderCustomerProducts();
+      } else if (tab === 'qr') {
+        document.getElementById('view-qr').classList.remove('hidden');
+        document.getElementById('btn-tab-qr').className = "py-2.5 px-3 rounded text-xs font-bold bg-yellow-400 text-black uppercase tracking-wider";
+      } else if (tab === 'admin') {
+        document.getElementById('view-admin').classList.remove('hidden');
+        document.getElementById('btn-tab-admin').className = "py-2.5 px-3 rounded text-xs font-bold bg-pink-600 text-white uppercase tracking-wider";
+      }
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      const btns = document.querySelectorAll('.cat-btn');
+      btns.forEach(btn => {
+        btn.classList.remove('bg-pink-600', 'text-white');
+        btn.classList.add('bg-slate-900', 'text-slate-200');
+      });
+      event.target.classList.remove('bg-slate-900', 'text-slate-200');
+      event.target.classList.add('bg-pink-600', 'text-white');
+      renderCustomerProducts();
+    }
+
+    function renderCustomerProducts() {
+      const container = document.getElementById('products-container');
+      container.innerHTML = '';
+
+      const filtered = currentCategory === 'todos' 
+        ? products 
+        : products.filter(p => p.category === currentCategory);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p class="text-center text-slate-400 text-sm py-8 font-semibold">Nenhum item nesta categoria.</p>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const badgeHTML = p.badge 
+          ? `<span class="bg-pink-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">${p.badge}</span>` 
+          : '';
+
+        const card = document.createElement('div');
+        card.className = "bg-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col justify-between gap-3 shadow-md";
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start gap-2 mb-1">
+              <h3 class="font-bold text-white text-base leading-snug">${p.name}</h3>
+              ${badgeHTML}
+            </div>
+            <p class="text-xs text-slate-300 font-medium">${p.desc || ''}</p>
+          </div>
+          <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+            <span class="text-[11px] uppercase font-bold text-slate-400 tracking-wider">${p.category}</span>
+            <div class="bg-yellow-400 text-black font-black px-3 py-1 rounded-md text-base">
+              R$ ${parseFloat(p.price).toFixed(2).replace('.', ',')}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function checkAdminPin() {
+      const pin = document.getElementById('admin-pin').value;
+      if (pin === '127311') {
+        document.getElementById('admin-login-box').classList.add('hidden');
+        document.getElementById('admin-panel').classList.remove('hidden');
+        renderAdminProductsList();
+      } else {
+        alert('Senha incorreta! Use 127311');
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('edit-prod-id').value;
+      const name = document.getElementById('prod-name').value;
+      const category = document.getElementById('prod-category').value;
+      const price = parseFloat(document.getElementById('prod-price').value);
+      const desc = document.getElementById('prod-desc').value;
+      const badge = document.getElementById('prod-badge').value;
+
+      if (editId) {
+        const index = products.findIndex(p => p.id == editId);
+        if (index !== -1) {
+          products[index] = { id: Number(editId), name, category, price, desc, badge };
+          alert('Produto atualizado com sucesso!');
+        }
+      } else {
+        const newProd = { id: Date.now(), name, category, price, desc, badge };
+        products.push(newProd);
+        alert('Produto cadastrado com sucesso!');
+      }
+
+      saveProducts();
+      resetForm();
+      renderAdminProductsList();
+    }
+
+    function startEditProduct(id) {
+      const prod = products.find(p => p.id === id);
+      if (!prod) return;
+
+      document.getElementById('edit-prod-id').value = prod.id;
+      document.getElementById('prod-name').value = prod.name;
+      document.getElementById('prod-category').value = prod.category;
+      document.getElementById('prod-price').value = prod.price;
+      document.getElementById('prod-desc').value = prod.desc || '';
+      document.getElementById('prod-badge').value = prod.badge || '';
+
+      document.getElementById('form-title').innerText = "✏️ Editar Produto";
+      document.getElementById('btn-submit').innerText = "Atualizar Produto";
+      document.getElementById('btn-cancel-edit').classList.remove('hidden');
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+      document.getElementById('product-form').reset();
+      document.getElementById('edit-prod-id').value = '';
+      document.getElementById('form-title').innerText = "➕ Cadastrar Novo Item";
+      document.getElementById('btn-submit').innerText = "Salvar Produto";
+      document.getElementById('btn-cancel-edit').classList.add('hidden');
+    }
+
+    function deleteProduct(id) {
+      if (confirm('Tem certeza que deseja remover este produto?')) {
+        products = products.filter(p => p.id !== id);
+        saveProducts();
+        renderAdminProductsList();
+      }
+    }
+
+    function renderAdminProductsList() {
+      const container = document.getElementById('admin-products-list');
+      container.innerHTML = '';
+
+      products.forEach(p => {
+        const item = document.createElement('div');
+        item.className = "flex justify-between items-center bg-slate-950 border border-slate-800 p-3 rounded text-xs";
+        item.innerHTML = `
+          <div>
+            <p class="font-bold text-white text-sm">${p.name} <span class="text-yellow-400 font-mono ml-1">R$ ${parseFloat(p.price).toFixed(2)}</span></p>
+            <p class="text-[10px] text-slate-400 font-medium">${p.category} ${p.badge ? '• ' + p.badge : ''}</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="startEditProduct(${p.id})" class="text-cyan-400 border border-cyan-400/40 px-2 py-1 rounded font-bold hover:bg-cyan-400/10">
+              Editar
+            </button>
+            <button onclick="deleteProduct(${p.id})" class="text-pink-500 border border-pink-500/40 px-2 py-1 rounded font-bold hover:bg-pink-500/10">
+              Excluir
+            </button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function generateQRCode() {
+      const url = document.getElementById('qr-url-input').value || window.location.href;
+      const box = document.getElementById('qrcode-box');
+      box.innerHTML = '';
+      
+      new QRCode(box, {
+        text: url,
+        width: 140,
+        height: 140,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+</body>
+</html>
