@@ -6,7 +6,7 @@
   <title>Espaço 344 - Flashback 80s & 90s [v1]</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter para legibilidade máxima -->
+  <!-- Google Fonts: Fonte Inter para máxima legibilidade -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
@@ -22,6 +22,7 @@
     .font-header {
       font-family: 'Orbitron', sans-serif;
     }
+    /* Estilos sem efeitos borrados ou sombras que atrapalhem a leitura */
     @media print {
       body * {
         visibility: hidden;
@@ -42,7 +43,7 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- CABEÇALHO -->
+  <!-- CABEÇALHO LIMPO E NÍTIDO -->
   <header class="border-b-2 border-pink-600 bg-slate-950 py-4 px-4 text-center sticky top-0 z-40">
     <div class="max-w-xl mx-auto">
       <span class="inline-block px-2 py-0.5 bg-pink-600 text-white font-bold text-[10px] tracking-wider uppercase rounded mb-1">
@@ -57,7 +58,7 @@
     </div>
   </header>
 
-  <!-- NAVEGAÇÃO -->
+  <!-- NAVEGAÇÃO DE ABAS -->
   <nav class="max-w-xl mx-auto w-full px-4 mt-4 flex justify-center gap-2">
     <button onclick="switchTab('menu')" id="btn-tab-menu" class="flex-1 py-2.5 px-3 rounded text-xs font-bold bg-cyan-400 text-black uppercase tracking-wider">
       📖 Cardápio
@@ -73,7 +74,7 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-xl mx-auto w-full px-4 py-6 flex-grow">
 
-    <!-- SEÇÃO: CARDÁPIO -->
+    <!-- SEÇÃO 1: CARDÁPIO DO CLIENTE -->
     <section id="view-menu" class="space-y-6">
       <!-- FILTROS POR CATEGORIA -->
       <div class="flex overflow-x-auto gap-2 pb-2">
@@ -96,11 +97,11 @@
 
       <!-- LISTA DE PRODUTOS -->
       <div id="products-container" class="grid gap-4">
-        <!-- Renderizado dinamicamente -->
+        <!-- Itens inseridos via JavaScript -->
       </div>
     </section>
 
-    <!-- SEÇÃO: GERADOR DE QR CODE -->
+    <!-- SEÇÃO 2: GERADOR DE QR CODE -->
     <section id="view-qr" class="hidden">
       <div class="bg-slate-900 border border-yellow-400 rounded-xl p-6 text-center space-y-4">
         <h2 class="font-header text-xl text-yellow-400 font-bold uppercase">Gerador de QR Code</h2>
@@ -135,10 +136,10 @@
       </div>
     </section>
 
-    <!-- SEÇÃO: ADMIN (SENHA 127311) -->
+    <!-- SEÇÃO 3: PAINEL ADMINISTRATIVO (CADASTRO E EDIÇÃO) -->
     <section id="view-admin" class="hidden space-y-6">
       
-      <!-- LOGIN -->
+      <!-- LOGIN COM SENHA 127311 -->
       <div id="admin-login-box" class="bg-slate-900 border border-pink-500 rounded-xl p-6 text-center space-y-4">
         <h2 class="font-header text-lg text-pink-500 font-bold uppercase">Painel Administrativo</h2>
         <p class="text-xs text-slate-300">Digite a senha de acesso para gerenciar o cardápio:</p>
@@ -148,10 +149,10 @@
         </div>
       </div>
 
-      <!-- PAINEL -->
+      <!-- PAINEL COMPLETO DE CADASTRO E EDIÇÃO -->
       <div id="admin-panel" class="hidden space-y-6">
         
-        <!-- FORMULÁRIO (CADASTRO E EDIÇÃO) -->
+        <!-- FORMULÁRIO (CADASTRO OU EDIÇÃO) -->
         <div class="bg-slate-900 border border-cyan-400 rounded-xl p-5 space-y-4">
           <h3 id="form-title" class="font-header text-md text-cyan-400 font-bold uppercase border-b border-slate-800 pb-2">➕ Cadastrar Novo Item</h3>
           
@@ -200,7 +201,7 @@
           </form>
         </div>
 
-        <!-- LISTA DE PRODUTOS PARA EDITAR/EXCLUIR -->
+        <!-- LISTA DE GERENCIAMENTO (EDITAR / EXCLUIR) -->
         <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
           <h3 class="font-header text-md text-slate-200 font-bold uppercase border-b border-slate-800 pb-2">📋 Produtos Cadastrados</h3>
           <div id="admin-products-list" class="space-y-2">
@@ -220,8 +221,9 @@
     <p class="text-[10px] text-slate-500 mt-2">Festa Anos 80 & 90 • Curta a noite! 🕺💃</p>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- LÓGICA EM JAVASCRIPT -->
   <script>
+    // PRODUTOS INICIAIS DE EXEMPLO
     const initialProducts = [
       { id: 1, name: "Cerveja Gelada K7", category: "Bebidas", price: 12.00, desc: "Lata 350ml trincando de gelada.", badge: "Clássico 80s" },
       { id: 2, name: "Tubaína Guaraná Retro", category: "Bebidas", price: 8.00, desc: "O sabor clássico da infância nos anos 80/90.", badge: "" },
@@ -245,6 +247,7 @@
       localStorage.setItem('espaco344_products', JSON.stringify(products));
     }
 
+    // NAUFRAGAR ENTRE ABAS
     function switchTab(tab) {
       document.getElementById('view-menu').classList.add('hidden');
       document.getElementById('view-qr').classList.add('hidden');
@@ -267,6 +270,7 @@
       }
     }
 
+    // FILTRO DE CATEGORIAS
     function filterCategory(cat) {
       currentCategory = cat;
       const btns = document.querySelectorAll('.cat-btn');
@@ -279,6 +283,7 @@
       renderCustomerProducts();
     }
 
+    // EXIBIR PRODUTOS COM ALTA LEGIBILIDADE E ALTO CONTRASTE
     function renderCustomerProducts() {
       const container = document.getElementById('products-container');
       container.innerHTML = '';
@@ -318,6 +323,7 @@
       });
     }
 
+    // VALIDAÇÃO DE SENHA FIXA: 127311
     function checkAdminPin() {
       const pin = document.getElementById('admin-pin').value;
       if (pin === '127311') {
@@ -325,10 +331,11 @@
         document.getElementById('admin-panel').classList.remove('hidden');
         renderAdminProductsList();
       } else {
-        alert('Senha incorreta! Use 127311');
+        alert('Senha incorreta! A senha correta é 127311');
       }
     }
 
+    // SALVAR OU EDITAR PRODUTO
     function handleFormSubmit(e) {
       e.preventDefault();
       const editId = document.getElementById('edit-prod-id').value;
@@ -339,12 +346,14 @@
       const badge = document.getElementById('prod-badge').value;
 
       if (editId) {
+        // Edição de item existente
         const index = products.findIndex(p => p.id == editId);
         if (index !== -1) {
           products[index] = { id: Number(editId), name, category, price, desc, badge };
           alert('Produto atualizado com sucesso!');
         }
       } else {
+        // Novo cadastro
         const newProd = { id: Date.now(), name, category, price, desc, badge };
         products.push(newProd);
         alert('Produto cadastrado com sucesso!');
@@ -355,6 +364,7 @@
       renderAdminProductsList();
     }
 
+    // CARREGAR DADOS NO FORMULÁRIO PARA EDIÇÃO
     function startEditProduct(id) {
       const prod = products.find(p => p.id === id);
       if (!prod) return;
@@ -373,6 +383,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // RESETAR FORMULÁRIO
     function resetForm() {
       document.getElementById('product-form').reset();
       document.getElementById('edit-prod-id').value = '';
@@ -381,6 +392,7 @@
       document.getElementById('btn-cancel-edit').classList.add('hidden');
     }
 
+    // EXCLUIR PRODUTO
     function deleteProduct(id) {
       if (confirm('Tem certeza que deseja remover este produto?')) {
         products = products.filter(p => p.id !== id);
@@ -389,6 +401,7 @@
       }
     }
 
+    // LISTAR ITENS NO PAINEL ADMIN
     function renderAdminProductsList() {
       const container = document.getElementById('admin-products-list');
       container.innerHTML = '';
@@ -414,6 +427,7 @@
       });
     }
 
+    // GERAR QR CODE
     function generateQRCode() {
       const url = document.getElementById('qr-url-input').value || window.location.href;
       const box = document.getElementById('qrcode-box');
