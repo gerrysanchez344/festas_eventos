@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>Espaço 344 · Cardápio 80/90</title>
+  <!-- Font Awesome (ícones) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- QRCode.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Fonte principal: Inter (limpa, moderna, altamente legível) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <style>
+    /* ===== RESET & BASE ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #0d0221;
@@ -31,6 +35,7 @@
       box-shadow: 0 0 50px rgba(255, 0, 127, 0.15), 0 0 100px rgba(0, 240, 255, 0.05);
       border: 1px solid rgba(255, 0, 127, 0.12);
     }
+    /* linha decorativa neon (sem borrão) */
     .vhs-line {
       width: 100%;
       height: 3px;
@@ -58,6 +63,7 @@
     .memphis-dots span:nth-child(3) { background: #7A2BFF; }
     .memphis-dots span:nth-child(4) { background: #FFE600; }
 
+    /* ===== CABEÇALHO ===== */
     .header { text-align: center; padding-bottom: 4px; }
     .logo-neon {
       font-size: 2.6rem;
@@ -67,6 +73,7 @@
       color: #FF007F;
       font-family: 'Inter', 'Arial Black', sans-serif;
       line-height: 1.1;
+      /* SEM text-shadow para evitar borrão */
     }
     .logo-neon small {
       font-size: 1.0rem;
@@ -103,6 +110,7 @@
       margin-top: 4px;
     }
 
+    /* ===== FILTROS ===== */
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -140,6 +148,7 @@
     .filter-btn[data-cat="Sobremesas"] { border-color: #7A2BFF; color: #d0b0ff; }
     .filter-btn[data-cat="Sobremesas"].active { background: #7A2BFF; color: #0d0221; }
 
+    /* ===== LISTA DE PRODUTOS ===== */
     .item-list { display: flex; flex-direction: column; gap: 10px; margin: 4px 0 8px; }
     .menu-item {
       background: #1e1e2f;
@@ -205,6 +214,7 @@
     .menu-item.dessert-item { border-left-color: #7A2BFF; }
     .menu-item.dessert-item .item-price-box { background: #7A2BFF; color: #ffffff; box-shadow: 0 2px 8px rgba(122, 43, 255, 0.3); }
 
+    /* ===== RODAPÉ ===== */
     .footer {
       margin-top: 28px;
       padding-top: 18px;
@@ -245,6 +255,7 @@
     }
     .footer .admin-link:hover { opacity: 0.9; color: #FF007F; }
 
+    /* ===== ADMIN OVERLAY ===== */
     .admin-overlay {
       display: none;
       position: fixed;
@@ -353,6 +364,7 @@
     .admin-item .actions button.del { color: #ff4466; }
     .admin-item .actions button.edit { color: #00F0FF; }
 
+    /* ===== QR CODE ===== */
     .qr-area {
       margin: 18px 0 8px;
       text-align: center;
@@ -385,6 +397,7 @@
     }
     .qr-actions button.cyan { background: #00F0FF; color: #0d0221; }
 
+    /* ===== LOGIN ADMIN ===== */
     .login-box {
       background: #1a102f;
       padding: 30px 20px;
@@ -425,6 +438,7 @@
       font-family: 'Inter', sans-serif;
     }
 
+    /* ===== RESPONSIVO ===== */
     @media (max-width: 420px) {
       .logo-neon { font-size: 2.0rem; }
       .logo-neon small { font-size: 0.8rem; }
@@ -443,6 +457,7 @@
 <body>
 
 <div class="menu-wrapper" id="menuWrapper">
+  <!-- cabeçalho -->
   <header class="header">
     <div class="logo-neon">
       ESPAÇO 344
@@ -454,6 +469,7 @@
     <div class="memphis-dots"><span></span><span></span><span></span><span></span></div>
   </header>
 
+  <!-- filtros -->
   <div class="filters" id="filterContainer">
     <button class="filter-btn active" data-cat="Todos">📋 Todos</button>
     <button class="filter-btn" data-cat="Bebidas">🍺 Bebidas</button>
@@ -462,8 +478,10 @@
     <button class="filter-btn" data-cat="Sobremesas">🍦 Sobremesas</button>
   </div>
 
+  <!-- lista de produtos -->
   <div id="productList" class="item-list"></div>
 
+  <!-- rodapé -->
   <footer class="footer">
     <div class="welcome-msg">✨ Bem-vindo(a) ao Espaço 344! ✨</div>
     <div class="balcao">📢 Faça seu pedido diretamente no balcão</div>
@@ -471,20 +489,17 @@
   </footer>
 </div>
 
+<!-- ===== ADMIN OVERLAY ===== -->
 <div class="admin-overlay" id="adminOverlay">
-  <div class="admin-panel" id="adminPanel"></div>
+  <div class="admin-panel" id="adminPanel">
+    <!-- conteúdo será injetado via JS (login ou gestão) -->
+  </div>
 </div>
 
 <script>
   (function() {
     // ================================================================
-    //  CONFIGURAÇÕES
-    // ================================================================
-    const ADMIN_PIN = '127311';
-    const STORAGE_KEY = 'espaco344_products_v1';
-
-    // ================================================================
-    //  DADOS INICIAIS (fallback)
+    //  DADOS INICIAIS
     // ================================================================
     const defaultProducts = [
       { id: 1, name: "Coca-Cola", category: "Bebidas", price: "8,00", desc: "lata 350ml", tag: "" },
@@ -504,35 +519,23 @@
     let currentFilter = 'Todos';
     let editingId = null;
     let qrInstance = null;
-    let isAdminAuthenticated = false;
+    const ADMIN_PIN = '127311';
 
     // ================================================================
     //  LOAD / SAVE
     // ================================================================
     function loadProducts() {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            products = parsed;
-            return;
-          }
-        }
-      } catch (e) {
-        console.warn('Erro ao carregar dados, usando fallback');
+      const stored = localStorage.getItem('espaco344_products_v1');
+      if (stored) {
+        try { products = JSON.parse(stored); } catch(e) { products = defaultProducts; }
+      } else {
+        products = defaultProducts;
       }
-      // Fallback para dados padrão
-      products = JSON.parse(JSON.stringify(defaultProducts));
+      if (!products || !products.length) products = defaultProducts;
       saveProducts();
     }
-
     function saveProducts() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-      } catch (e) {
-        console.error('Erro ao salvar dados:', e);
-      }
+      localStorage.setItem('espaco344_products_v1', JSON.stringify(products));
     }
 
     // ================================================================
@@ -541,17 +544,14 @@
     function renderPublic() {
       const container = document.getElementById('productList');
       if (!container) return;
-
       let filtered = products;
       if (currentFilter !== 'Todos') {
         filtered = products.filter(p => p.category === currentFilter);
       }
-
       if (filtered.length === 0) {
         container.innerHTML = `<div style="text-align:center;padding:30px;color:#888;font-family:'Inter',sans-serif;font-size:1rem;font-weight:600;">Nenhum item nesta categoria 🕺</div>`;
         return;
       }
-
       container.innerHTML = '';
       filtered.forEach(p => {
         const div = document.createElement('div');
@@ -563,7 +563,6 @@
 
         const info = document.createElement('div');
         info.className = 'item-info';
-        
         const nameSpan = document.createElement('span');
         nameSpan.className = 'item-name';
         const emoji = document.createElement('span');
@@ -581,7 +580,6 @@
           tag.textContent = p.tag;
           nameSpan.appendChild(tag);
         }
-        
         const desc = document.createElement('span');
         desc.className = 'item-desc';
         desc.textContent = p.desc || '';
@@ -589,6 +587,7 @@
         info.appendChild(nameSpan);
         info.appendChild(desc);
 
+        // Preço em caixa de alto contraste
         const priceBox = document.createElement('span');
         priceBox.className = 'item-price-box';
         priceBox.textContent = `R$ ${p.price}`;
@@ -600,13 +599,14 @@
     }
 
     // ================================================================
-    //  RENDER ADMIN
+    //  RENDER ADMIN (com login embutido)
     // ================================================================
     function renderAdmin(authenticated = false) {
       const panel = document.getElementById('adminPanel');
       if (!panel) return;
 
       if (!authenticated) {
+        // Tela de login
         panel.innerHTML = `
           <div style="text-align:center; margin-bottom:20px;">
             <h2 style="color:#FF007F; font-family:'Inter',sans-serif; font-weight:800;">🔐 ADMIN</h2>
@@ -627,6 +627,7 @@
         return;
       }
 
+      // Painel de gestão
       panel.innerHTML = `
         <h2>⚡ ADMIN <button id="closeAdminBtn">&times;</button></h2>
         <div style="margin-bottom:10px; border-bottom:1px solid #3a2a5a; padding-bottom:10px;">
@@ -654,6 +655,7 @@
         <div style="margin-top:16px; border-top:1px solid #3a2a5a; padding-top:14px;">
           <button class="btn-admin secondary" id="logoutAdminBtn" style="width:auto;padding:8px 20px;display:inline-block;">🔒 Sair</button>
         </div>
+        <!-- QR Code -->
         <div class="qr-area">
           <div id="qrcode"></div>
           <div class="qr-label">📸 Aponte a câmera para o cardápio digital</div>
@@ -664,6 +666,7 @@
         </div>
       `;
 
+      // Eventos do painel
       document.getElementById('closeAdminBtn').addEventListener('click', closeAdmin);
       document.getElementById('addProductBtn').addEventListener('click', handleAdminSubmit);
       document.getElementById('logoutAdminBtn').addEventListener('click', () => { closeAdmin(); });
@@ -683,7 +686,6 @@
       if (!input) return;
       if (input.value === ADMIN_PIN) {
         error.textContent = '';
-        isAdminAuthenticated = true;
         renderAdmin(true);
       } else {
         error.textContent = 'PIN incorreto. Tente novamente.';
@@ -758,13 +760,4 @@
           products[idx] = { ...products[idx], name, category, price, desc, tag };
         }
         editingId = null;
-        document.getElementById('addProductBtn').innerHTML = '<i class="fas fa-plus-circle"></i> Adicionar Item';
-      } else {
-        const newId = Date.now() + Math.floor(Math.random() * 1000);
-        products.push({ id: newId, name, category, price, desc, tag });
-      }
-
-      // Limpar campos
-      document.getElementById('prodName').value = '';
-      document.getElementById('prodPrice').value = '';
-      document.getElementById('prodDesc
+        document.getElementById('addProductBtn').innerHTML = '<i class="fas fa-plus-circle"></i> Adicionar
